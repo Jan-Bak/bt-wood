@@ -1,0 +1,40 @@
+---
+import logo from "../assets/logo.png";
+---
+
+<header
+  class="py-2 px-4 fixed w-full z-50 flex items-center justify-between text-white uppercase tracking-wide text-sm"
+>
+  <!--  filter backdrop-blur-md border-b border-stone-900/10 -->
+  <a href="/" class="tracking-tight flex items-center gap-2 h-12">
+    <img src={logo.src} alt="Wood Studio" class="h-8 w-8 filter grayscale" />
+    <span class="text-lg tracking-widest">WOOD STUDIO</span>
+  </a>
+
+  <div>
+    <nav class="hidden md:flex space-x-8 items-center">
+      <a href="/contact" class="hover:text-stone-300 transition duration-100"
+        >Realizacje
+      </a>
+      <a href="/contact" class="hover:text-stone-300 transition duration-100">
+        Kontakt
+      </a>
+      <a
+        href="/contact"
+        class="bg-stone-600 py-1 px-4 rounded-sm hover:bg-stone-500 transition duration-100"
+      >
+        Wycena
+      </a>
+      <a
+        href="/contact"
+        class="bg-stone-600 py-1 px-4 rounded-sm hover:bg-stone-500 transition duration-100"
+        >Umów konsultacje
+      </a>
+    </nav>
+    <button
+      class="md:hidden uppercase cursor-pointer tracking-widest text-sm hover:text-stone-300 transition duration-100"
+    >
+      Menu
+    </button>
+  </div>
+</header>

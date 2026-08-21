@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../layouts/Header.astro";
+import Footer from "../../layouts/Footer.astro";
+import imageOne from "../../assets/bt-11.jpg";
+---
+
+<Layout
+  title="Stolarnia — meble na wymiar"
+  description="Projektujemy i wykonujemy meble na wymiar — od kuchni, przez szafy, po indywidualne zabudowy."
+>
+  <Header />
+  <main>
+    <div>
+      <img
+        src={imageOne.src}
+        alt="Initial image"
+        class="w-screen h-screen object-cover filter brightness-75"
+      />
+      Initial image
+    </div>
+  </main>
+  <Footer />
+</Layout>

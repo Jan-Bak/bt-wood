@@ -3,9 +3,10 @@ import "../styles/global.css";
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = "BT wood" } = Astro.props;
+const { title = "BT wood", description = "Meble na wymiar" } = Astro.props;
 ---
 
 <!doctype html>
@@ -14,9 +15,10 @@ const { title = "BT wood" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
+    <meta name="description" content={description} />
   </head>
 
-  <body>
+  <body class="absolute">
     <slot />
   </body>
 </html>
