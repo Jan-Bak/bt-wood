@@ -1,5 +1,111 @@
 ---
+import Divider from "../components/Divider.astro";
+import logo from "../assets/logo.png";
 
+const quickLinks = [
+  { label: "Realizacje", href: "/#realizacje" },
+  { label: "Kontakt", href: "/#kontakt" },
+  { label: "Wycena", href: "/#wycena" },
+];
 ---
 
-<footer>footer</footer>
+<footer data-footer class="bg-stone-900 text-stone-200">
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="grid gap-8 md:grid-cols-[1.4fr_0.8fr_1fr_1fr]">
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <img
+            src={logo.src}
+            alt="BT Wood Studio logo"
+            class="h-9 w-9 rounded-sm object-cover grayscale"
+          />
+          <div>
+            <p
+              class="text-[0.68rem] uppercase tracking-[0.38em] text-stone-300"
+            >
+              BT Wood
+            </p>
+            <p
+              class="text-[0.72rem] uppercase tracking-[0.24em] text-stone-400"
+            >
+              Studio
+            </p>
+          </div>
+        </div>
+
+        <p class="max-w-xs text-sm leading-relaxed text-stone-300">
+          Tworzymy wnętrza, które łączą funkcję, harmonię i ciepło naturalnych
+          materiałów.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-[0.68rem] uppercase tracking-[0.28em] text-stone-400">
+          Menu
+        </p>
+        <ul class="mt-4 space-y-3 text-sm text-stone-200">
+          {
+            quickLinks.map((link) => (
+              <li>
+                <a href={link.href} class="transition hover:text-[#d7c7ac]">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-[0.68rem] uppercase tracking-[0.28em] text-stone-400">
+          Kontakt
+        </p>
+        <ul class="mt-4 space-y-3 text-sm text-stone-200">
+          <li>
+            <a
+              href="mailto:kontakt@btwoodstudio.pl"
+              class="transition hover:text-[#d7c7ac]"
+            >
+              kontakt@btwoodstudio.pl
+            </a>
+          </li>
+          <li>
+            <a href="tel:+48123456789" class="transition hover:text-[#d7c7ac]">
+              +48 123 456 789
+            </a>
+          </li>
+          <li class="text-stone-300">Kraków, Polska</li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col justify-between">
+        <div>
+          <p class="text-[0.68rem] uppercase tracking-[0.28em] text-stone-400">
+            Zarezerwuj
+          </p>
+          <p class="mt-4 text-sm leading-relaxed text-stone-300">
+            Umów konsultację i odbierz dopasowane rozwiązanie do Twojej
+            przestrzeni.
+          </p>
+        </div>
+
+        <a
+          href="/#konsultacja"
+          class="mt-6 inline-flex items-center justify-center border border-[#d7c7ac] bg-[#d7c7ac] px-4 py-3 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-stone-900 transition hover:bg-[#e7d8bc]"
+        >
+          Umów konsultacje
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-5">
+      <Divider class="mb-5 opacity-90" />
+      <div
+        class="flex flex-col gap-3 text-[0.68rem] uppercase tracking-[0.2em] text-stone-400 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <span>Copyrights reserved © 2026</span>
+        <span>BT Wood Studio</span>
+      </div>
+    </div>
+  </div>
+</footer>
