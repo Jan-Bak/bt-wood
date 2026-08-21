@@ -1,17 +1,24 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
+import PageSelector from "../components/page-selector.astro";
+import clientimage from "../assets/bt-11.jpg";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="BT Wood Studio">
+  <main
+    class="flex h-screen flex-col bg-stone-100 md:h-screen md:flex-row md:gap-0 md:p-0"
+  >
+    <PageSelector
+      name="Klient Indywidualny"
+      description="Skontaktuj się z nami, aby uzyskać indywidualne rozwiązanie"
+      linkTo="/individual-client"
+      image={clientimage}
+    />
+    <PageSelector
+      name="Współpraca B2B"
+      description="Zaproś nas do współpracy i otrzymasz specjalne warunki"
+      linkTo="https://www.bt-woodstudio.com/"
+      image="https://www.salesfocusinc.com/wp-content/uploads/2025/01/B2B-Client-Acquisition.png"
+    />
+  </main>
+</Layout>
