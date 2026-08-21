@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../layouts/Header.astro";
 import Footer from "../../layouts/Footer.astro";
-import imageOne from "../../assets/bt-11.jpg";
+import Hero from "../../components/hero.astro";
 ---
 
 <Layout
@@ -11,14 +11,7 @@ import imageOne from "../../assets/bt-11.jpg";
 >
   <Header />
   <main>
-    <div>
-      <img
-        src={imageOne.src}
-        alt="Initial image"
-        class="w-screen h-screen object-cover filter brightness-75"
-      />
-      Initial image
-    </div>
+    <Hero />
   </main>
   <Footer />
 </Layout>

@@ -1,0 +1,63 @@
+---
+interface Props {
+  delay?: number;
+  as?: string;
+  class?: string;
+}
+
+const { delay = 0, as: Tag = "div", class: className } = Astro.props;
+---
+
+<Tag data-reveal data-delay={delay} class:list={[className]}>
+  <slot />
+</Tag>
+
+<script is:inline>
+  (() => {
+    if (window.__btwoodRevealInitialized__) return;
+    window.__btwoodRevealInitialized__ = true;
+
+    const revealItems = () => [...document.querySelectorAll("[data-reveal]")];
+
+    const activateReveal = () => {
+      const items = revealItems();
+
+      if (!items.length) {
+        return;
+      }
+
+      if (!("IntersectionObserver" in window)) {
+        items.forEach((item) => item.classList.add("is-visible"));
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries, currentObserver) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            const item = entry.target;
+            const delay = Number(item.getAttribute("data-delay") || 0);
+            item.style.transitionDelay = `${delay}ms`;
+            item.classList.add("is-visible");
+            currentObserver.unobserve(item);
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "0px 0px -4% 0px",
+        },
+      );
+
+      items.forEach((item) => observer.observe(item));
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", activateReveal, {
+        once: true,
+      });
+    } else {
+      activateReveal();
+    }
+  })();
+</script>

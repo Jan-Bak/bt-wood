@@ -1,0 +1,79 @@
+---
+import Reveal from "./Reveal.astro";
+import imageOne from "../assets/bt-11.jpg";
+---
+
+<section
+  class="relative isolate flex min-h-screen w-full items-center overflow-hidden bg-stone-100"
+>
+  <div class="absolute inset-0">
+    <img
+      src={imageOne.src}
+      alt="BT Wood Studio interior"
+      class="h-full w-full object-cover brightness-[0.72] grayscale-[0.08]"
+    />
+    <!-- background gradients -->
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-stone-950/70 via-stone-900/30 to-stone-800/20"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(214,182,120,0.24),_transparent_45%)]"
+    >
+    </div>
+    <!--  -->
+  </div>
+
+  <div class="relative z-10 mx-auto flex w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <Reveal delay={120}>
+      <Reveal
+        delay={180}
+        as="span"
+        class="block text-[0.68rem] font-medium uppercase tracking-[0.38em] text-stone-200/85"
+      >
+        Bespoke solutions for modern living
+      </Reveal>
+
+      <Reveal
+        delay={240}
+        as="h1"
+        class="mt-4 text-4xl font-medium leading-none text-stone-50 sm:text-5xl lg:text-6xl"
+      >
+        Better <br /> Together
+      </Reveal>
+
+      <Reveal
+        delay={300}
+        as="p"
+        class="mt-5 max-w-md text-base leading-relaxed text-stone-100/90 sm:text-lg"
+      >
+        Każda przestrzeń opowiada historię. Najlepsze z nich powstają z setek
+        świadomych decyzji projektowych i wykonawczych.
+      </Reveal>
+
+      <Reveal delay={360} class="mt-8 flex flex-wrap gap-3">
+        <a
+          href="/#kontakt"
+          class="inline-flex items-center justify-center border border-taupe-200 px-5 py-3 text-[0.7rem] font-medium uppercase tracking-[0.22em] text-taupe-200 transition hover:text-taupe-400 hover:border-taupe-400"
+        >
+          Porozmawiajmy
+        </a>
+
+        <a
+          href="/#realizacje"
+          class="inline-flex items-center justify-center gap-2 px-5 py-3 text-[0.7rem] font-medium uppercase tracking-[0.22em] text-taupe-200 transition hover:text-taupe-400"
+        >
+          Zobacz realizacje
+          <span aria-hidden="true">→</span>
+        </a>
+      </Reveal>
+
+      <Reveal
+        delay={420}
+        class="mt-8 flex items-center gap-3 text-[0.68rem] uppercase tracking-[0.28em] text-stone-100/85"
+      >
+        <span>Kraków, Poland</span>
+      </Reveal>
+    </Reveal>
+  </div>
+</section>
