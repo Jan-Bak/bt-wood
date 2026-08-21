@@ -8,45 +8,54 @@ interface PortfolioItem {
   image: string;
   category: string;
   location: string;
+  area: string;
+  year: string;
+  type: string;
 }
 
 const items: PortfolioItem[] = [
   {
     title: "Nowoczesna kuchnia",
     description:
-      "Luksusowa zabudowa z naturalnym drewnem i funkcjonalnym układem przechowywania.",
+      "Luksusowa zabudowa z naturalnym drewnem, ciepłym światłem i funkcjonalnym układem przechowywania, który łączy estetykę z codziennym użytkowaniem.",
     image:
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
     category: "Kuchnia",
     location: "Kraków",
+    area: "28 m²",
+    year: "2024",
+    type: "Projekt wnętrza",
   },
   {
     title: "Salon z charakterem",
     description:
-      "Przestrzeń zaprojektowana z myślą o codziennym relaksie i eleganckim odbiorze.",
+      "Przestrzeń zaprojektowana z myślą o codziennym relaksie, korzystnym podziale stref i przytulnej, eleganckiej atmosferze inspirowanej naturalnymi materiałami.",
     image:
-      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80",
     category: "Salon",
     location: "Niepołomice",
+    area: "42 m²",
+    year: "2023",
+    type: "Aranżacja",
   },
   {
     title: "Zabudowa garderoby",
     description:
-      "Minimalistyczne rozwiązanie z wykorzystaniem ciepłych materiałów i precyzyjnych detali.",
+      "Minimalistyczne rozwiązanie z zastosowaniem ciepłych materiałów, precyzyjnych detali i praktycznego układu, który podnosi funkcjonalność pomieszczenia.",
     image:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
     category: "Garderoba",
     location: "Warszawa",
+    area: "14 m²",
+    year: "2025",
+    type: "Meblarstwo",
   },
 ];
 ---
 
-<section
-  id="realizacje"
-  class="border-b border-stone-300/80 bg-stone-100 py-20 sm:py-24"
->
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-8">
+<section id="portfolio" class="border-b border-stone-300/80 bg-stone-100 pt-12">
+  <div class="mx-auto max-w-none px-0">
+    <div class="mb-8 px-4 sm:px-6 lg:px-8">
       <Reveal delay={0} class="flex items-center gap-4">
         <span class="text-[0.68rem] uppercase tracking-[0.38em] text-stone-500">
           1 Projects
@@ -57,79 +66,126 @@ const items: PortfolioItem[] = [
       </Reveal>
     </div>
 
-    <Reveal
-      delay={140}
-      class="relative overflow-hidden border border-stone-300/80 bg-stone-50 shadow-[0_12px_30px_rgba(41,33,26,0.04)]"
-    >
-      <div class="overflow-hidden">
-        <div
-          data-portfolio-track
-          class="flex transition-transform duration-500 ease-out"
-        >
-          {
-            items.map((item) => (
-              <article class="min-w-full">
-                <div class="relative h-[440px] sm:h-[520px]">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    class="h-full w-full object-cover"
-                  />
-                  <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-900/20 to-transparent" />
-
-                  <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-                    <div class="mb-3 flex items-center justify-between gap-3 text-[0.64rem] uppercase tracking-[0.24em] text-stone-200/90">
-                      <span>{item.category}</span>
-                      <span>{item.location}</span>
-                    </div>
-
-                    <h3 class="max-w-md text-3xl font-medium leading-tight text-stone-50 sm:text-4xl">
-                      {item.title}
-                    </h3>
-                    <p class="mt-3 max-w-lg text-sm leading-relaxed text-stone-200 sm:text-base">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            ))
-          }
-        </div>
-      </div>
-
+    <Reveal delay={120} class="block">
       <div
-        class="flex items-center justify-between gap-4 border-t border-stone-200 bg-stone-50 px-4 py-4 sm:px-5 sm:py-5"
+        class="relative overflow-hidden border-y border-stone-300/80 bg-stone-50"
       >
-        <div data-portfolio-dots class="flex items-center gap-2">
-          {
-            items.map((_, index) => (
-              <button
-                type="button"
-                data-dot={index}
-                aria-label={`Pokaż realizację ${index + 1}`}
-                class="h-2.5 w-2.5 border border-stone-500 bg-transparent transition-all duration-300"
-              />
-            ))
-          }
+        <div class="overflow-hidden">
+          <div
+            data-portfolio-track
+            class="flex transition-transform duration-500 ease-out"
+          >
+            {
+              items.map((item) => (
+                <article class="min-w-full">
+                  <div class="relative h-[560px] sm:h-[660px] lg:h-[720px]">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      class="absolute inset-0 h-full w-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-900/25 to-stone-900/10" />
+
+                    <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10">
+                      <div class="mb-4 flex items-center gap-3 text-[0.64rem] uppercase tracking-[0.22em] text-stone-200/90">
+                        <span>{item.category}</span>
+                        <span class="h-px w-8 bg-stone-200/70" />
+                        <span>{item.location}</span>
+                      </div>
+
+                      <h3 class="max-w-xl text-3xl font-medium leading-tight text-stone-50 sm:text-4xl lg:text-5xl">
+                        {item.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div class="border-t border-stone-200 bg-[#efe5d5] px-4 py-5 sm:px-6 sm:py-6 lg:px-8 lg:py-7">
+                    <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+                      <div>
+                        <p class="text-[0.62rem] uppercase tracking-[0.28em] text-stone-500">
+                          Opis realizacji
+                        </p>
+                        <p class="mt-3 max-w-xl text-sm leading-relaxed text-stone-700 sm:text-base">
+                          {item.description}
+                        </p>
+                      </div>
+
+                      <dl class="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-2">
+                        <div class="border border-stone-300/80 bg-stone-50 p-3">
+                          <dt class="text-[0.58rem] uppercase tracking-[0.22em] text-stone-500">
+                            Miejsce
+                          </dt>
+                          <dd class="mt-2 text-sm font-medium text-stone-900">
+                            {item.location}
+                          </dd>
+                        </div>
+                        <div class="border border-stone-300/80 bg-stone-50 p-3">
+                          <dt class="text-[0.58rem] uppercase tracking-[0.22em] text-stone-500">
+                            Metraż
+                          </dt>
+                          <dd class="mt-2 text-sm font-medium text-stone-900">
+                            {item.area}
+                          </dd>
+                        </div>
+                        <div class="border border-stone-300/80 bg-stone-50 p-3">
+                          <dt class="text-[0.58rem] uppercase tracking-[0.22em] text-stone-500">
+                            Rok
+                          </dt>
+                          <dd class="mt-2 text-sm font-medium text-stone-900">
+                            {item.year}
+                          </dd>
+                        </div>
+                        <div class="border border-stone-300/80 bg-stone-50 p-3">
+                          <dt class="text-[0.58rem] uppercase tracking-[0.22em] text-stone-500">
+                            Typ
+                          </dt>
+                          <dd class="mt-2 text-sm font-medium text-stone-900">
+                            {item.type}
+                          </dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
         </div>
 
-        <div class="flex items-center gap-3">
-          <button
-            type="button"
-            data-portfolio-prev
-            aria-label="Poprzednia realizacja"
-            class="inline-flex h-10 w-10 items-center justify-center border border-stone-300 bg-white text-lg text-stone-900 transition hover:border-stone-900"
-          >
-            ←
-          </button>
-          <button
-            type="button"
-            data-portfolio-next
-            aria-label="Następna realizacja"
-            class="inline-flex h-10 w-10 items-center justify-center border border-stone-900 bg-stone-900 text-lg text-stone-50 transition hover:bg-stone-700"
-          >
-            →
-          </button>
+        <div
+          class="flex items-center justify-between gap-4 border-t border-stone-200 bg-stone-50 px-4 py-4 sm:px-6 sm:py-5 lg:px-8"
+        >
+          <div data-portfolio-dots class="flex items-center gap-2.5">
+            {
+              items.map((_, index) => (
+                <button
+                  type="button"
+                  data-dot={index}
+                  aria-label={`Pokaż realizację ${index + 1}`}
+                  class="h-2.5 w-2.5 border border-stone-500 bg-transparent transition-all duration-300 sm:h-3 sm:w-3"
+                />
+              ))
+            }
+          </div>
+
+          <div class="flex items-center gap-2 sm:gap-3">
+            <button
+              type="button"
+              data-portfolio-prev
+              aria-label="Poprzednia realizacja"
+              class="inline-flex h-11 w-11 items-center justify-center border border-stone-300 bg-white text-lg text-stone-900 shadow-sm transition hover:border-stone-900 hover:bg-stone-100 sm:h-12 sm:w-12"
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              data-portfolio-next
+              aria-label="Następna realizacja"
+              class="inline-flex h-11 w-11 items-center justify-center border border-stone-900 bg-stone-900 text-lg text-stone-50 shadow-sm transition hover:bg-stone-700 sm:h-12 sm:w-12"
+            >
+              →
+            </button>
+          </div>
         </div>
       </div>
     </Reveal>
@@ -137,13 +193,21 @@ const items: PortfolioItem[] = [
 </section>
 
 <script>
-  const track = document.querySelector("[data-portfolio-track]");
-  const dots = document.querySelectorAll("[data-dot]");
-  const nextBtn = document.querySelector("[data-portfolio-next]");
-  const prevBtn = document.querySelector("[data-portfolio-prev]");
+  const track = document.querySelector(
+    "[data-portfolio-track]",
+  ) as HTMLDivElement | null;
+  const dots = document.querySelectorAll(
+    "[data-dot]",
+  ) as NodeListOf<HTMLButtonElement>;
+  const nextBtn = document.querySelector(
+    "[data-portfolio-next]",
+  ) as HTMLButtonElement | null;
+  const prevBtn = document.querySelector(
+    "[data-portfolio-prev]",
+  ) as HTMLButtonElement | null;
 
   if (track && dots.length && nextBtn && prevBtn) {
-    const slides = Array.from(track.children);
+    const slides = Array.from(track.children) as HTMLElement[];
     let currentIndex = 0;
 
     const updateCarousel = (index: number) => {
@@ -161,7 +225,8 @@ const items: PortfolioItem[] = [
 
     dots.forEach((dot) => {
       dot.addEventListener("click", () => {
-        updateCarousel(Number(dot.getAttribute("data-dot")));
+        const dotIndex = Number(dot.dataset.dot);
+        if (!Number.isNaN(dotIndex)) updateCarousel(dotIndex);
       });
     });
 
