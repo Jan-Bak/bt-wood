@@ -1,40 +1,136 @@
 ---
 import logo from "../assets/logo.png";
+
+const navItems = [
+  { label: "Realizacje", href: "/#realizacje" },
+  { label: "Kontakt", href: "/#kontakt" },
+  { label: "Wycena", href: "/#wycena", primary: true },
+  { label: "Umów konsultacje", href: "/#konsultacja", primary: true },
+];
 ---
 
 <header
-  class="py-2 px-4 fixed w-full z-50 flex items-center justify-between text-white uppercase tracking-wide text-sm"
+  class="fixed top-0 z-50 px-4 py-2 text-sm uppercase tracking-[0.2em] text-white flex items-center justify-between w-full"
 >
-  <!--  filter backdrop-blur-md border-b border-stone-900/10 -->
-  <a href="/" class="tracking-tight flex items-center gap-2 h-12">
-    <img src={logo.src} alt="Wood Studio" class="h-8 w-8 filter grayscale" />
-    <span class="text-lg tracking-widest">WOOD STUDIO</span>
+  <a
+    href="/"
+    aria-label="BT Wood Studio - strona główna"
+    class="flex h-12 items-center gap-2 tracking-tight"
+  >
+    <img
+      src={logo.src}
+      alt="BT Wood Studio logo"
+      class="h-8 w-8 rounded-sm object-cover grayscale"
+    />
+    <span class="text-base tracking-[0.35em] text-stone-100">WOOD STUDIO</span>
   </a>
 
-  <div>
-    <nav class="hidden md:flex space-x-8 items-center">
-      <a href="/contact" class="hover:text-stone-300 transition duration-100"
-        >Realizacje
-      </a>
-      <a href="/contact" class="hover:text-stone-300 transition duration-100">
-        Kontakt
-      </a>
-      <a
-        href="/contact"
-        class="bg-stone-600 py-1 px-4 rounded-sm hover:bg-stone-500 transition duration-100"
-      >
-        Wycena
-      </a>
-      <a
-        href="/contact"
-        class="bg-stone-600 py-1 px-4 rounded-sm hover:bg-stone-500 transition duration-100"
-        >Umów konsultacje
-      </a>
-    </nav>
-    <button
-      class="md:hidden uppercase cursor-pointer tracking-widest text-sm hover:text-stone-300 transition duration-100"
-    >
-      Menu
-    </button>
-  </div>
+  <nav aria-label="Main navigation" class="hidden items-center gap-4 md:flex">
+    {
+      navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            "transition duration-150 ease-out",
+            item.primary
+              ? "rounded-sm bg-stone-600 px-4 py-2 text-[0.7rem] tracking-[0.2em] text-stone-50 hover:bg-stone-500"
+              : "hover:text-stone-300",
+          ]}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+
+  <button
+    type="button"
+    aria-label="Open mobile navigation menu"
+    aria-expanded="false"
+    aria-controls="mobile-navigation-panel"
+    data-menu-button
+    class="uppercase md:hidden"
+  >
+    <span>Menu</span>
+  </button>
 </header>
+
+<div
+  data-mobile-backdrop
+  class="pointer-events-none fixed inset-0 z-40 bg-stone-950/60 opacity-0 transition-opacity duration-200 md:hidden"
+  aria-hidden="true"
+>
+</div>
+
+<aside
+  id="mobile-navigation-panel"
+  data-mobile-panel
+  class="fixed right-0 top-0 z-50 flex h-full w-full max-w-sm translate-x-full flex-col border-l border-white/10 bg-stone-950/95 p-6 pt-20 shadow-2xl transition-transform duration-300 md:hidden"
+  aria-label="Mobile navigation"
+>
+  <nav aria-label="Mobile navigation" class="mt-4">
+    <ul class="space-y-2">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[
+                "flex items-center justify-between rounded-md px-3 py-3 text-base tracking-[0.2em] text-stone-100 transition hover:bg-white/5",
+                item.primary && "bg-stone-800/80",
+              ]}
+            >
+              <span>{item.label}</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</aside>
+
+<script>
+  const menuButton = document.querySelector("[data-menu-button]");
+  const mobilePanel = document.querySelector("[data-mobile-panel]");
+  const mobileBackdrop = document.querySelector("[data-mobile-backdrop]");
+
+  if (menuButton && mobilePanel && mobileBackdrop) {
+    const setMenuState = (isOpen: boolean) => {
+      const ariaValue = String(isOpen);
+      menuButton.setAttribute("aria-expanded", ariaValue);
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "Close mobile navigation menu" : "Open mobile navigation menu",
+      );
+      mobilePanel.classList.toggle("translate-x-full", !isOpen);
+      mobileBackdrop.classList.toggle("opacity-0", !isOpen);
+      mobileBackdrop.classList.toggle("pointer-events-none", !isOpen);
+      document.body.classList.toggle("overflow-hidden", isOpen);
+    };
+
+    const closeMenu = () => setMenuState(false);
+    const openMenu = () => setMenuState(true);
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mobileBackdrop.addEventListener("click", closeMenu);
+
+    mobilePanel.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    });
+  }
+</script>
