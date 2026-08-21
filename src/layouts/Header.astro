@@ -10,7 +10,8 @@ const navItems = [
 ---
 
 <header
-  class="fixed top-0 z-50 px-4 py-2 text-sm uppercase tracking-[0.2em] text-white flex items-center justify-between w-full"
+  data-header
+  class="fixed top-0 z-50 flex w-full items-center justify-between px-4 py-2 text-sm uppercase tracking-[0.2em] text-white transition-all duration-300 ease-out"
 >
   <a
     href="/"
@@ -22,7 +23,9 @@ const navItems = [
       alt="BT Wood Studio logo"
       class="h-8 w-8 rounded-sm object-cover grayscale"
     />
-    <span class="text-base tracking-[0.35em] text-stone-100">WOOD STUDIO</span>
+    <span data-logo-text class="text-sm tracking-[0.35em] text-stone-100"
+      >WOOD STUDIO</span
+    >
   </a>
 
   <nav aria-label="Main navigation" class="hidden items-center gap-4 md:flex">
@@ -30,10 +33,12 @@ const navItems = [
       navItems.map((item) => (
         <a
           href={item.href}
+          data-nav-link
+          data-primary={item.primary ? "true" : "false"}
           class:list={[
-            "transition duration-150 ease-out",
+            "transition duration-150 ease-out text-[0.7rem]",
             item.primary
-              ? "rounded-sm bg-stone-600 px-4 py-2 text-[0.7rem] tracking-[0.2em] text-stone-50 hover:bg-stone-500"
+              ? "rounded-sm bg-stone-600 px-4 py-2 tracking-[0.2em] text-stone-50 hover:bg-stone-500"
               : "hover:text-stone-300",
           ]}
         >
@@ -49,11 +54,53 @@ const navItems = [
     aria-expanded="false"
     aria-controls="mobile-navigation-panel"
     data-menu-button
-    class="uppercase md:hidden"
+    class="uppercase transition-colors duration-300 md:hidden"
   >
     <span>Menu</span>
   </button>
 </header>
+
+<style is:global>
+  [data-header] {
+    border-bottom: 1px solid transparent;
+    backdrop-filter: blur(0px);
+  }
+
+  [data-header].is-scrolled {
+    border-bottom-color: rgba(214, 211, 209, 0.8);
+    background: rgba(255, 255, 255);
+    box-shadow: 0 10px 30px rgba(28, 25, 23, 0.08);
+    backdrop-filter: blur(12px);
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    color: rgb(28 25 23);
+  }
+
+  [data-header].is-scrolled [data-logo-text] {
+    color: rgb(28 25 23);
+  }
+
+  [data-header].is-scrolled [data-menu-button] {
+    color: rgb(28 25 23);
+  }
+
+  [data-header].is-scrolled [data-nav-link][data-primary="false"] {
+    color: rgb(28 25 23);
+  }
+
+  [data-header].is-scrolled [data-nav-link][data-primary="false"]:hover {
+    color: rgb(68 64 60);
+  }
+
+  [data-header].is-scrolled [data-nav-link][data-primary="true"] {
+    background: rgb(41 37 36);
+    color: rgb(250 250 249);
+  }
+
+  [data-header].is-scrolled [data-nav-link][data-primary="true"]:hover {
+    background: rgb(68 64 60);
+  }
+</style>
 
 <div
   data-mobile-backdrop
@@ -91,9 +138,19 @@ const navItems = [
 </aside>
 
 <script>
+  const header = document.querySelector("[data-header]");
   const menuButton = document.querySelector("[data-menu-button]");
   const mobilePanel = document.querySelector("[data-mobile-panel]");
   const mobileBackdrop = document.querySelector("[data-mobile-backdrop]");
+
+  const updateHeaderState = () => {
+    if (!header) return;
+    const scrolled = window.scrollY >= 40;
+    header.classList.toggle("is-scrolled", scrolled);
+  };
+
+  window.addEventListener("scroll", updateHeaderState, { passive: true });
+  updateHeaderState();
 
   if (menuButton && mobilePanel && mobileBackdrop) {
     const setMenuState = (isOpen: boolean) => {
