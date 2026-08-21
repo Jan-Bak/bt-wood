@@ -7,6 +7,8 @@ const quickLinks = [
   { label: "Kontakt", href: "/#kontakt" },
   { label: "Wycena", href: "/#wycena" },
 ];
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer data-footer class="bg-stone-900 text-stone-200">
@@ -103,7 +105,7 @@ const quickLinks = [
       <div
         class="flex flex-col gap-3 text-[0.68rem] uppercase tracking-[0.2em] text-stone-400 sm:flex-row sm:items-center sm:justify-between"
       >
-        <span>Copyrights reserved © 2026</span>
+        <span>Copyrights reserved © {currentYear}</span>
         <span>BT Wood Studio</span>
       </div>
     </div>

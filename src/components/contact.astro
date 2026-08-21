@@ -6,13 +6,13 @@ const team = [
   {
     name: "Tomek",
     email: "tomasz@bt-woodstudio.com",
-    phone: "791 374 837",
+    phone: "+48 791 374 837",
     accent: "#d7c7ac",
   },
   {
     name: "Bartek",
     email: "bartlomiej@bt-woodstudio.com",
-    phone: "606 634 401",
+    phone: "+48 606 634 401",
     accent: "#c5b39a",
   },
 ];
@@ -20,66 +20,112 @@ const team = [
 
 <section id="kontakt" class="bg-stone-100 py-20 sm:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <Reveal delay={0} class="mb-10">
-      <Divider class="mb-6" />
+    <Reveal delay={0} class="flex items-center gap-4">
+      <span class="text-[0.68rem] uppercase tracking-[0.38em] text-stone-500">
+        2 Contact
+      </span>
+      <div class="flex-1">
+        <Divider class="bg-stone-400" />
+      </div>
     </Reveal>
 
-    <div class="grid gap-10 lg:grid-cols-[0.72fr_1.4fr] lg:items-start">
-      <Reveal delay={120} class="space-y-5">
-        <p class="text-[0.68rem] uppercase tracking-[0.38em] text-stone-500">
-          01
-        </p>
-        <h2
-          class="font-[family-name:var(--font-display)] text-5xl leading-none text-stone-900 sm:text-6xl"
-        >
-          Let’s Talk
-        </h2>
-        <p class="max-w-sm text-base leading-relaxed text-stone-600">
-          Każdy projekt zaczyna się od rozmowy. Porozmawiajmy o Twoim.
-        </p>
-      </Reveal>
+    <div
+      class="grid gap-10 pt-8 transition-all duration-300 ease-out lg:sticky lg:top-24 lg:grid-cols-[0.9fr_1.4fr] lg:items-start lg:origin-top-left lg:scale-[0.985]"
+    >
+      <div class="space-y-5">
+        <Reveal delay={120} class="space-y-6">
+          <div class="space-y-5">
+            <h2
+              class="font-[family-name:var(--font-display)] text-5xl leading-none text-stone-900 sm:text-6xl"
+            >
+              Let’s Talk
+            </h2>
+            <p class="max-w-sm text-base leading-relaxed text-stone-600">
+              Każdy projekt zaczyna się od rozmowy. Porozmawiajmy o Twoim.
+            </p>
+          </div>
+
+          <div
+            class="border border-stone-300 bg-stone-50 p-5 text-sm text-stone-700"
+          >
+            <p
+              class="text-[0.62rem] uppercase tracking-[0.25em] text-stone-500"
+            >
+              Kontakt
+            </p>
+            <ul class="mt-4 space-y-3">
+              <li>
+                <a
+                  href="mailto:biuro@btwoodstudio.pl"
+                  class="hover:text-stone-900"
+                >
+                  biuro@btwoodstudio.pl
+                </a>
+              </li>
+              <li>
+                <a href="tel:+48791374837" class="hover:text-stone-900">
+                  +48 791 374 837
+                </a>
+              </li>
+              <li>Niepołomice, Polska</li>
+            </ul>
+          </div>
+        </Reveal>
+
+        <div class="space-y-4">
+          {
+            team.map((person, index) => (
+              <Reveal
+                delay={180 + index * 120}
+                class="border border-stone-300 bg-stone-50 p-5 shadow-[0_0_0_1px_rgba(120,103,84,0.04)]"
+              >
+                <div class="flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="flex h-11 w-11 items-center justify-center text-sm font-medium text-stone-900"
+                      style={`background: ${person.accent}`}
+                    >
+                      {person.name.slice(0, 1)}
+                    </div>
+                    <div>
+                      <p class="text-[0.62rem] uppercase tracking-[0.24em] text-stone-500">
+                        Kontakt
+                      </p>
+                      <h3 class="mt-1 text-xl font-medium text-stone-900">
+                        {person.name}
+                      </h3>
+                    </div>
+                  </div>
+                  <span class="text-[0.58rem] uppercase tracking-[0.2em] text-stone-400">
+                    {index === 0 ? "Studio" : "Projekt"}
+                  </span>
+                </div>
+
+                <ul class="mt-5 space-y-3 border-t border-stone-200 pt-4 text-sm text-stone-700">
+                  <li>
+                    <a
+                      href={`mailto:${person.email}`}
+                      class="transition hover:text-stone-900"
+                    >
+                      {person.email}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={`tel:${person.phone.replace(/\s+/g, "")}`}
+                      class="transition hover:text-stone-900"
+                    >
+                      {person.phone}
+                    </a>
+                  </li>
+                </ul>
+              </Reveal>
+            ))
+          }
+        </div>
+      </div>
 
       <div class="grid gap-5 md:grid-cols-2">
-        {
-          team.map((person, index) => (
-            <Reveal
-              delay={180 + index * 120}
-              class="border border-stone-300/80 bg-white p-6"
-            >
-              <div class="flex items-center gap-3">
-                <div
-                  class="flex h-10 w-10 items-center justify-center text-sm font-medium text-stone-900"
-                  style={`background: ${person.accent}`}
-                >
-                  {person.name.slice(0, 1)}
-                </div>
-                <h3 class="text-xl font-medium text-stone-900">
-                  {person.name}
-                </h3>
-              </div>
-
-              <ul class="mt-5 space-y-3 text-sm text-stone-700">
-                <li>
-                  <a
-                    href={`mailto:${person.email}`}
-                    class="transition hover:text-stone-900"
-                  >
-                    {person.email}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={`tel:${person.phone.replace(/\s+/g, "")}`}
-                    class="transition hover:text-stone-900"
-                  >
-                    {person.phone}
-                  </a>
-                </li>
-              </ul>
-            </Reveal>
-          ))
-        }
-
         <Reveal
           delay={420}
           class="border border-stone-300/80 bg-stone-900 p-6 text-stone-100 md:col-span-2"
@@ -107,6 +153,117 @@ const team = [
               Skontaktuj się z nami
             </a>
           </div>
+        </Reveal>
+
+        <Reveal
+          delay={500}
+          class="border border-stone-300/80 bg-white p-6 md:col-span-2"
+        >
+          <div class="mb-5 flex items-center justify-between gap-4">
+            <p
+              class="text-[0.68rem] uppercase tracking-[0.28em] text-stone-500"
+            >
+              Formularz
+            </p>
+          </div>
+
+          <form class="grid gap-4 md:grid-cols-2">
+            <label class="block text-sm text-stone-700 md:col-span-1">
+              <span
+                class="mb-2 block text-[0.62rem] uppercase tracking-[0.2em] text-stone-500"
+              >
+                Imię
+              </span>
+              <input
+                type="text"
+                placeholder="Twoje imię"
+                class="w-full border border-stone-300 bg-stone-50 px-3 py-3 text-sm text-stone-900 outline-none placeholder:text-stone-400"
+              />
+            </label>
+
+            <label class="block text-sm text-stone-700 md:col-span-1">
+              <span
+                class="mb-2 block text-[0.62rem] uppercase tracking-[0.2em] text-stone-500"
+              >
+                Email
+              </span>
+              <input
+                type="email"
+                placeholder="twoj@email.com"
+                class="w-full border border-stone-300 bg-stone-50 px-3 py-3 text-sm text-stone-900 outline-none placeholder:text-stone-400"
+              />
+            </label>
+
+            <label class="block text-sm text-stone-700 md:col-span-2">
+              <span
+                class="mb-2 block text-[0.62rem] uppercase tracking-[0.2em] text-stone-500"
+              >
+                Temat
+              </span>
+              <input
+                type="text"
+                placeholder="Opisz temat zapytania"
+                class="w-full border border-stone-300 bg-stone-50 px-3 py-3 text-sm text-stone-900 outline-none placeholder:text-stone-400"
+              />
+            </label>
+
+            <label class="block text-sm text-stone-700 md:col-span-2">
+              <span
+                class="mb-2 block text-[0.62rem] uppercase tracking-[0.2em] text-stone-500"
+              >
+                Wiadomość
+              </span>
+              <textarea
+                rows="5"
+                placeholder="Napisz, czego potrzebujesz..."
+                class="w-full resize-none border border-stone-300 bg-stone-50 px-3 py-3 text-sm text-stone-900 outline-none placeholder:text-stone-400"
+              ></textarea>
+            </label>
+
+            <div class="md:col-span-2 space-y-4 border-t border-stone-200 pt-4">
+              <label class="flex items-start gap-3 text-sm text-stone-700">
+                <input type="checkbox" class="mt-1 h-4 w-4 accent-[#8a6f52]" />
+                <span>
+                  Wyrażam zgodę na przetwarzanie moich danych osobowych w celu
+                  odpowiedzi na zapytanie i kontaktu w sprawie realizacji
+                  projektu.
+                </span>
+              </label>
+
+              <label class="flex items-start gap-3 text-sm text-stone-700">
+                <input type="checkbox" class="mt-1 h-4 w-4 accent-[#8a6f52]" />
+                <span>
+                  Wyrażam zgodę na przekazanie moich danych do wybranych
+                  partnerów lub podwykonawców realizujących usługę w zakresie
+                  obsługi zapytania.
+                </span>
+              </label>
+
+              <div
+                class="border border-stone-200 bg-stone-50 p-4 text-sm text-stone-700"
+              >
+                <p
+                  class="text-[0.62rem] uppercase tracking-[0.22em] text-stone-500"
+                >
+                  Administrator danych
+                </p>
+                <p class="mt-2 leading-relaxed">
+                  BT Wood Studio, ul. Pionierów 5A, 32-005 Niepołomice.
+                  Administrator przetwarza dane wyłącznie w celu obsługi
+                  zapytania i realizacji współpracy.
+                </p>
+              </div>
+            </div>
+
+            <div class="md:col-span-2">
+              <button
+                type="button"
+                class="inline-flex items-center justify-center border border-[#d7c7ac] bg-[#d7c7ac] px-5 py-3 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-stone-900 transition hover:bg-[#e7d8bc]"
+              >
+                Wyślij zapytanie
+              </button>
+            </div>
+          </form>
         </Reveal>
       </div>
     </div>
