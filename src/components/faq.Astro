@@ -1,0 +1,77 @@
+---
+import Accordion from "./Accordion.astro";
+import Divider from "./Divider.astro";
+import Reveal from "./Reveal.astro";
+
+const questions = [
+  {
+    question: "Jak wygląda rozpoczęcie współpracy?",
+    answer:
+      "Zaczynamy od krótkiej rozmowy o Twojej przestrzeni, potrzebach i budżecie. Następnie przygotowujemy zakres prac oraz kolejne kroki dopasowane do projektu.",
+  },
+  {
+    question: "Czy wykonujecie meble na wymiar?",
+    answer:
+      "Tak. Projektujemy i wykonujemy indywidualne zabudowy, kuchnie, garderoby oraz meble dopasowane do wymiarów wnętrza i codziennego sposobu użytkowania.",
+  },
+  {
+    question: "Na jakim obszarze realizujecie projekty?",
+    answer:
+      "Pracujemy przede wszystkim w Krakowie, Niepołomicach i okolicach, ale podejmujemy również wybrane realizacje w innych częściach Polski.",
+  },
+  {
+    question: "Ile trwa realizacja projektu?",
+    answer:
+      "Termin zależy od zakresu prac, materiałów i stopnia personalizacji. Po poznaniu założeń przedstawiamy realny harmonogram wraz z etapami realizacji.",
+  },
+  {
+    question: "Czy mogę otrzymać wycenę bez gotowego projektu?",
+    answer:
+      "Tak. Do przygotowania wstępnej wyceny wystarczą podstawowe wymiary, zdjęcia lub rzut pomieszczenia oraz informacje o oczekiwanym zakresie prac.",
+  },
+];
+---
+
+<section id="faq" class="border-b border-stone-300/80 bg-stone-100 py-12">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <Reveal delay={0} class="flex items-center gap-4">
+      <span class="text-[0.68rem] uppercase tracking-[0.38em] text-stone-500">
+        2 FAQ
+      </span>
+      <div class="flex-1">
+        <Divider class="bg-stone-400" />
+      </div>
+    </Reveal>
+
+    <div class="grid gap-10 pt-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <Reveal delay={120} class="self-start">
+        <p class="text-[0.65rem] uppercase tracking-[0.3em] text-stone-500">
+          Najczęstsze pytania
+        </p>
+        <h2
+          class="mt-4 max-w-sm font-[family-name:var(--font-display)] text-5xl leading-none text-stone-900 sm:text-6xl"
+        >
+          Zanim zaczniemy
+        </h2>
+        <p class="mt-5 max-w-sm text-base leading-relaxed text-stone-600">
+          Kilka informacji, które pomogą Ci lepiej przygotować się do pierwszej
+          rozmowy o wnętrzu.
+        </p>
+      </Reveal>
+
+      <Reveal delay={240}>
+        <div class="border-t border-stone-300">
+          {
+            questions.map((item, index) => (
+              <Accordion
+                question={item.question}
+                answer={item.answer}
+                open={index === 0}
+              />
+            ))
+          }
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>

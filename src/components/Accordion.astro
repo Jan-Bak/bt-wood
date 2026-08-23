@@ -1,0 +1,51 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+  open?: boolean;
+}
+
+const { question, answer, open = false } = Astro.props;
+---
+
+<details
+  data-accordion
+  class="group border-b border-stone-300 first:border-t"
+  open={open}
+>
+  <summary
+    class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-lg text-stone-900 marker:hidden sm:py-6 sm:text-xl"
+  >
+    <span>{question}</span>
+    <span
+      aria-hidden="true"
+      class="relative flex h-8 w-8 shrink-0 items-center justify-center border border-stone-300 text-stone-600 transition duration-300 group-open:border-stone-900 group-open:bg-stone-900 group-open:text-stone-50"
+    >
+      <span class="absolute h-px w-3 bg-current"></span>
+      <span
+        class="absolute h-3 w-px bg-current transition duration-300 group-open:rotate-90"
+      ></span>
+    </span>
+  </summary>
+  <div
+    class="max-w-2xl pb-6 pr-14 text-sm leading-relaxed text-stone-600 sm:text-base"
+  >
+    {answer}
+  </div>
+</details>
+
+<script>
+  const accordions = document.querySelectorAll("details[data-accordion]");
+
+  accordions.forEach((accordion) => {
+    accordion.addEventListener("toggle", () => {
+      if (!(accordion as HTMLDetailsElement).open) return;
+
+      accordions.forEach((otherAccordion) => {
+        if (otherAccordion !== accordion) {
+          (otherAccordion as HTMLDetailsElement).open = false;
+        }
+      });
+    });
+  });
+</script>
