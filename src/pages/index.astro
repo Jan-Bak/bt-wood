@@ -2,12 +2,24 @@
 import Layout from "../layouts/Layout.astro";
 import PageSelector from "../components/page-selector.astro";
 import clientImage from "../assets/bt-11.jpg";
+import logo from "../assets/logo.png";
 ---
 
 <Layout title="BT Wood Studio" description="TBA: Meble na wymiar">
   <main
-    class="flex h-screen flex-col bg-stone-100 md:h-screen md:flex-row md:gap-0 md:p-0"
+    class="relative flex h-screen flex-col bg-stone-100 md:h-screen md:flex-row md:gap-0 md:p-0"
   >
+    <a
+      href="/"
+      aria-label="BT Wood Studio - strona główna"
+      class="absolute left-1/2 top-5 z-20 -translate-x-1/2 rounded-full p-2 transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-stone-500/60 md:top-8"
+    >
+      <img
+        src={logo.src}
+        alt="BT Wood Studio logo"
+        class="h-14 w-14 object-contain md:h-16 md:w-16"
+      />
+    </a>
     <PageSelector
       name="Klient Indywidualny"
       description="Skontaktuj się z nami, aby uzyskać indywidualne rozwiązanie"
