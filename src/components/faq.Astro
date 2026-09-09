@@ -62,11 +62,11 @@ const questions = [
       <Reveal delay={240}>
         <div class="border-t border-stone-300">
           {
-            questions.map((item, index) => (
+            questions.map((item, idx) => (
               <Accordion
                 question={item.question}
                 answer={item.answer}
-                open={index === 0}
+                open={idx === 0}
               />
             ))
           }
