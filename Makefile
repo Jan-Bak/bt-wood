@@ -3,7 +3,8 @@
 help:
 	@echo "Available commands:"
 	@echo "  make tag-list              - List all tags"
-	@echo "  make tag-create TAG=v1.0.0 - Create a new tag"
+	@echo "  make tag-bump VERSION=1.0.0 - Bump version and create tag (updates package.json)"
+	@echo "  make tag-create TAG=v1.0.0 - Create a new tag (manual)"
 	@echo "  make tag-delete TAG=v1.0.0 - Delete a local tag"
 	@echo "  make tag-push              - Push all tags to remote"
 	@echo "  make tag-push-single TAG=v1.0.0 - Push a specific tag"
@@ -17,6 +18,16 @@ tag-list:
 	@git tag -l
 	@echo "\nRemote tags:"
 	@git ls-remote --tags origin
+
+tag-bump:
+	@if [ -z "$(VERSION)" ]; then \
+		echo "Error: VERSION variable not set. Usage: make tag-bump VERSION=1.0.0"; \
+		echo "Allowed versions: major, minor, patch, or specific version (e.g., 1.0.0)"; \
+		exit 1; \
+	fi
+	@npm version $(VERSION) -m "chore: release v%s"
+	@echo "✓ Version bumped to $(VERSION) and tag created"
+	@echo "Push tag with: make tag-push TAG=v$(VERSION)"
 
 tag-create:
 	@if [ -z "$(TAG)" ]; then \
