@@ -1,0 +1,80 @@
+---
+import B2BLayout from "../../layouts/b2b/Layout.astro";
+import PageHero from "../../components/b2b/PageHero.astro";
+
+const projects = [
+  {
+    name: "Nesting i oklejanie serii",
+    detail: "Szczegóły projektu 1",
+    summary:
+      "Przygotowanie plików CAD, optymalizacja rozkroju i produkcja elementów z oklejeniem krawędzi pod montaż u partnera.",
+    metrics: ["CAD + nesting", "Seria produkcyjna", "Oklejanie ABS"],
+  },
+  {
+    name: "Zabudowa salonu meblowego",
+    detail: "Szczegóły projektu 2",
+    summary:
+      "Projekt i wykonanie ekspozycji: lady, regały i zabudowy pokazowe z pomiarem na obiekcie oraz montażem.",
+    metrics: ["Pomiar", "Produkcja", "Montaż"],
+  },
+  {
+    name: "Kuchnie kontraktowe",
+    detail: "Szczegóły projektu 3",
+    summary:
+      "Realizacja montażu mebli kuchennych z podłączeniem AGD (hydraulika, elektryka, gaz) oraz protokołem odbioru.",
+    metrics: ["Festool", "SEP", "Protokół"],
+  },
+  {
+    name: "Wsparcie projektowe B2B",
+    detail: "Szczegóły projektu 4",
+    summary:
+      "Wycena i dokumentacja projektów meblowych — od koncepcji po pliki produkcyjne dla nestingu CNC.",
+    metrics: ["Wycena", "Dokumentacja", "CNC"],
+  },
+];
+---
+
+<B2BLayout
+  title="Projekty"
+  description="Projekty B2B BT Wood Studio — produkcja, dokumentacja CAD i montaż."
+>
+  <PageHero
+    eyebrow="Projekty"
+    title="Projekty"
+    description="Wybrane typy współpracy projektowo-produkcyjnej. Każdy projekt domykamy jasnym zakresem, terminem i odpowiedzialnością."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid gap-4">
+      {
+        projects.map((project, index) => (
+          <article class="grid gap-6 border border-stone-200 bg-white p-6 sm:grid-cols-[0.35fr_1fr] sm:p-8">
+            <div>
+              <p class="text-[0.62rem] uppercase tracking-[0.16em] text-stone-500">
+                {project.detail}
+              </p>
+              <h2 class="mt-2 text-2xl font-medium text-stone-900">
+                {project.name}
+              </h2>
+              <p class="mt-4 text-[0.65rem] uppercase tracking-[0.14em] text-stone-400">
+                0{index + 1}
+              </p>
+            </div>
+            <div>
+              <p class="text-sm leading-relaxed text-stone-600 sm:text-base">
+                {project.summary}
+              </p>
+              <ul class="mt-5 flex flex-wrap gap-2">
+                {project.metrics.map((metric) => (
+                  <li class="border border-stone-200 bg-stone-50 px-3 py-1.5 text-[0.65rem] uppercase tracking-[0.12em] text-stone-600">
+                    {metric}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</B2BLayout>

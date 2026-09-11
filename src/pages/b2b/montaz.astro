@@ -1,0 +1,114 @@
+---
+import B2BLayout from "../../layouts/b2b/Layout.astro";
+import PageHero from "../../components/b2b/PageHero.astro";
+
+const montaz = [
+  "kuchennych",
+  "pokojowych",
+  "szafy",
+  "garderoby",
+  "biurowe",
+  "realizacja trudnych zleceń nie klasyfikujących się w ramach wymogów producenta",
+  "przeróbki mebli u klienta",
+  "montaż blatów drewnianych / laminowanych / HPL",
+  "łączenie blatów na wcinkę",
+];
+
+const agd = [
+  "podłączamy wszystkie AGD",
+  "hydrauliczne",
+  "elektryczne",
+  "gazowe (sprawdzamy szczelność instalacji i prawidłowość podłączenia)",
+  "uprawnienia SEP / podbijamy wszystkie podłączone przez nas urządzenia nie zakończone wtyczką",
+  "pomoc w doborze elementów niezbędnych do prawidłowego podłączenia AGD (wentylacyjne, elektryczne, wodne)",
+];
+
+const wycena = [
+  "bezpłatna wycena przed rozpoczęciem pracy",
+  "płatność po montażu",
+  "protokół z wykonanej usługi",
+];
+
+const wymiana = ["Zmywarki", "Płyty indukcyjne", "Okapy", "Zlewy"];
+---
+
+<B2BLayout
+  title="Usługa montażu mebli"
+  description="Montaż mebli kuchennych, biurowych i niestandardowych. Narzędzia Festool, podłączenia AGD, uprawnienia SEP."
+>
+  <PageHero
+    eyebrow="Usługi"
+    title="Usługa montażu mebli"
+    description="Dodatkowo wykonujemy usługi w zakresie montażu mebli zakupionych przez klienta. Pracujemy na narzędziach niemieckiej firmy Festool — stworzonych dla profesjonalistów, głównie do obróbki drewna. Dzięki temu efekt końcowy naszej pracy jest bezkonkurencyjny."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid gap-6 lg:grid-cols-2">
+      <article class="border border-stone-200 bg-white p-6 sm:p-7">
+        <h2 class="text-xl font-medium text-stone-900">Montaż mebli</h2>
+        <ul class="mt-4 space-y-2 text-sm leading-relaxed text-stone-600">
+          {
+            montaz.map((item) => (
+              <li class="flex gap-3">
+                <span class="mt-2 h-px w-3 shrink-0 bg-stone-400" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+
+      <article class="border border-stone-200 bg-white p-6 sm:p-7">
+        <h2 class="text-xl font-medium text-stone-900">Podłączenia AGD</h2>
+        <ul class="mt-4 space-y-2 text-sm leading-relaxed text-stone-600">
+          {
+            agd.map((item) => (
+              <li class="flex gap-3">
+                <span class="mt-2 h-px w-3 shrink-0 bg-stone-400" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+
+      <article class="border border-stone-200 bg-stone-50 p-6 sm:p-7">
+        <h2 class="text-xl font-medium text-stone-900">Wycena</h2>
+        <ul class="mt-4 space-y-2 text-sm leading-relaxed text-stone-600">
+          {
+            wycena.map((item) => (
+              <li class="flex gap-3">
+                <span class="mt-2 h-px w-3 shrink-0 bg-stone-400" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+
+      <article class="border border-stone-200 bg-stone-50 p-6 sm:p-7">
+        <h2 class="text-xl font-medium text-stone-900">Wymiana starego AGD</h2>
+        <ul class="mt-4 space-y-2 text-sm leading-relaxed text-stone-600">
+          {
+            wymiana.map((item) => (
+              <li class="flex gap-3">
+                <span class="mt-2 h-px w-3 shrink-0 bg-stone-400" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+    </div>
+
+    <p class="mt-10 text-sm text-stone-600">
+      Skontaktuj się z nami:
+      <a
+        href="mailto:biuro@bt-woodstudio.com"
+        class="font-medium text-stone-900 hover:underline"
+      >
+        biuro@bt-woodstudio.com
+      </a>
+    </p>
+  </section>
+</B2BLayout>

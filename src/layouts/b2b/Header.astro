@@ -1,0 +1,127 @@
+---
+import logo from "../../assets/logo.png";
+
+const navItems = [
+  { label: "Strona główna", href: "/b2b/" },
+  { label: "Realizacje", href: "/b2b/realizacje" },
+  { label: "Projekty", href: "/b2b/projekty" },
+  { label: "Usługi", href: "/b2b/uslugi" },
+  { label: "Montaż", href: "/b2b/montaz" },
+  { label: "Partnerzy", href: "/b2b/partnerzy" },
+  { label: "Kontakt", href: "/b2b/kontakt", primary: true },
+];
+
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-stone-200 bg-white/95 backdrop-blur-md"
+>
+  <div
+    class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8"
+  >
+    <a href="/b2b/" class="flex items-center gap-3" aria-label="BT Wood Studio B2B">
+      <img
+        src={logo.src}
+        alt=""
+        class="h-8 w-8 object-cover grayscale"
+      />
+      <div class="leading-tight">
+        <p class="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-stone-900">
+          BT Wood Studio
+        </p>
+        <p class="text-[0.62rem] uppercase tracking-[0.18em] text-stone-500">
+          Współpraca B2B
+        </p>
+      </div>
+    </a>
+
+    <nav aria-label="Nawigacja B2B" class="hidden items-center gap-1 lg:flex">
+      {
+        navItems.map((item) => {
+          const hrefPath = item.href.replace(/\/$/, "") || "/b2b";
+          const active =
+            pathname === hrefPath ||
+            (hrefPath !== "/b2b" && pathname.startsWith(hrefPath));
+          return (
+            <a
+              href={item.href}
+              class:list={[
+                "px-3 py-2 text-[0.72rem] uppercase tracking-[0.14em] transition",
+                item.primary
+                  ? "bg-stone-900 text-stone-50 hover:bg-stone-700"
+                  : active
+                    ? "bg-stone-100 text-stone-900"
+                    : "text-stone-600 hover:bg-stone-50 hover:text-stone-900",
+              ]}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <button
+      type="button"
+      class="text-[0.72rem] uppercase tracking-[0.16em] text-stone-700 lg:hidden"
+      aria-expanded="false"
+      aria-controls="b2b-mobile-nav"
+      data-b2b-menu
+    >
+      Menu
+    </button>
+  </div>
+</header>
+
+<div
+  id="b2b-mobile-nav"
+  data-b2b-panel
+  class="fixed inset-0 z-40 hidden bg-white lg:hidden"
+>
+  <div class="flex h-full flex-col px-4 pb-8 pt-20">
+    <nav aria-label="Menu mobilne B2B" class="space-y-1">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "block border-b border-stone-200 px-2 py-4 text-sm uppercase tracking-[0.14em]",
+              item.primary ? "font-medium text-stone-900" : "text-stone-700",
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <a
+      href="/"
+      class="mt-auto border border-stone-300 px-4 py-3 text-center text-[0.72rem] uppercase tracking-[0.14em] text-stone-700"
+    >
+      Wróć do wyboru ścieżki
+    </a>
+  </div>
+</div>
+
+<script>
+  const button = document.querySelector("[data-b2b-menu]");
+  const panel = document.querySelector("[data-b2b-panel]");
+
+  if (button && panel) {
+    const setOpen = (open: boolean) => {
+      button.setAttribute("aria-expanded", String(open));
+      panel.classList.toggle("hidden", !open);
+      document.body.classList.toggle("overflow-hidden", open);
+    };
+
+    button.addEventListener("click", () => {
+      const open = button.getAttribute("aria-expanded") === "true";
+      setOpen(!open);
+    });
+
+    panel.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+  }
+</script>

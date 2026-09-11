@@ -1,0 +1,64 @@
+---
+const currentYear = new Date().getFullYear();
+
+const links = [
+  { label: "Usługi", href: "/b2b/uslugi" },
+  { label: "Montaż", href: "/b2b/montaz" },
+  { label: "Projekty", href: "/b2b/projekty" },
+  { label: "Kontakt", href: "/b2b/kontakt" },
+];
+---
+
+<footer class="border-t border-stone-200 bg-stone-50">
+  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="grid gap-8 md:grid-cols-3">
+      <div>
+        <p class="text-[0.68rem] font-medium uppercase tracking-[0.2em] text-stone-900">
+          BT Wood Studio
+        </p>
+        <p class="mt-3 max-w-xs text-sm leading-relaxed text-stone-600">
+          Od 2012 roku realizujemy projekty stolarskie dla firm, salonów i
+          partnerów branżowych — od nestingu CNC po montaż.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-[0.65rem] uppercase tracking-[0.18em] text-stone-500">
+          Szybkie linki
+        </p>
+        <ul class="mt-3 space-y-2 text-sm text-stone-700">
+          {
+            links.map((link) => (
+              <li>
+                <a href={link.href} class="hover:text-stone-900">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-[0.65rem] uppercase tracking-[0.18em] text-stone-500">
+          Kontakt B2B
+        </p>
+        <ul class="mt-3 space-y-2 text-sm text-stone-700">
+          <li>
+            <a href="mailto:biuro@bt-woodstudio.com" class="hover:text-stone-900">
+              biuro@bt-woodstudio.com
+            </a>
+          </li>
+          <li>ul. Pionierów 5A, 32-005 Niepołomice</li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="mt-8 flex flex-col gap-2 border-t border-stone-200 pt-5 text-[0.65rem] uppercase tracking-[0.14em] text-stone-500 sm:flex-row sm:justify-between"
+    >
+      <span>© {currentYear} BT Wood Studio</span>
+      <a href="/" class="hover:text-stone-800">Klient indywidualny → /i</a>
+    </div>
+  </div>
+</footer>

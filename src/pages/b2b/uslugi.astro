@@ -1,0 +1,88 @@
+---
+import B2BLayout from "../../layouts/b2b/Layout.astro";
+import PageHero from "../../components/b2b/PageHero.astro";
+
+const park = [
+  {
+    title: "Centrum nestingu CNC",
+    points: [
+      "Optymalizacja rozkroju płyt",
+      "Cięcie elementów meblowych pod serie i jednostkowe zlecenia",
+      "Przygotowanie pod dalsze oklejanie i montaż",
+    ],
+  },
+  {
+    title: "Oklejanie płyt",
+    points: [
+      "Idealna krawędź ABS / PVC",
+      "Przygotowanie elementów pod meble kontraktowe",
+      "Kontrola jakości krawędzi przed wydaniem",
+    ],
+  },
+  {
+    title: "Projektowanie i CAD",
+    points: [
+      "Od projektu po realizację",
+      "Przygotowanie dokumentacji produkcyjnej",
+      "Wycena projektów na podstawie rysunków i list materiałowych",
+    ],
+  },
+  {
+    title: "Pomiary i logistyka produkcji",
+    points: [
+      "Pomiarowanie pomieszczeń przed produkcją",
+      "Cięcie i oklejanie na zlecenie",
+      "Współpraca z partnerami montażowymi i handlowymi",
+    ],
+  },
+];
+---
+
+<B2BLayout
+  title="Usługi — Park maszyn"
+  description="Park maszyn BT Wood Studio: nesting CNC, oklejanie płyt, CAD, pomiary i produkcja na zlecenie."
+>
+  <PageHero
+    eyebrow="Usługi"
+    title="Park maszyn"
+    description="Nowoczesny park maszynowy pozwala nam realizować usługi produkcyjne dla firm meblarskich, salonów i partnerów B2B — od nestingu po gotowy element."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid gap-4 lg:grid-cols-2">
+      {
+        park.map((block) => (
+          <article class="border border-stone-200 bg-stone-50 p-6 sm:p-7">
+            <h2 class="text-xl font-medium text-stone-900">{block.title}</h2>
+            <ul class="mt-4 space-y-2 text-sm leading-relaxed text-stone-600">
+              {block.points.map((point) => (
+                <li class="flex gap-3">
+                  <span class="mt-2 h-px w-3 shrink-0 bg-stone-400" aria-hidden="true" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 border border-stone-200 bg-white p-6 sm:flex sm:items-center sm:justify-between sm:gap-6">
+      <div>
+        <p class="text-[0.65rem] uppercase tracking-[0.16em] text-stone-500">
+          Oferta produkcyjna
+        </p>
+        <p class="mt-2 max-w-xl text-sm leading-relaxed text-stone-600">
+          Potrzebujesz wyceny nestingu, oklejania lub pełnego zakresu od projektu
+          do montażu? Napisz — przygotujemy ofertę pod Twoje pliki lub pomiary.
+        </p>
+      </div>
+      <a
+        href="/b2b/kontakt"
+        class="mt-5 inline-flex shrink-0 bg-stone-900 px-5 py-3 text-[0.7rem] uppercase tracking-[0.14em] text-stone-50 hover:bg-stone-700 sm:mt-0"
+      >
+        Zapytaj o wycenę
+      </a>
+    </div>
+  </section>
+</B2BLayout>
