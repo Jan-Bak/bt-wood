@@ -1,0 +1,43 @@
+---
+import Layout from "../Layout.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import "../../styles/b2b.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Usługi stolarskie B2B: nesting CNC, oklejanie, projektowanie, montaż mebli. BT Wood Studio, Niepołomice.",
+} = Astro.props;
+---
+
+<Layout title={`${title} | BT Wood Studio B2B`} description={description}>
+  <link
+    slot="head"
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+  <link
+    slot="head"
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+  <link
+    slot="head"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <div data-b2b class="flex min-h-screen flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </div>
+</Layout>

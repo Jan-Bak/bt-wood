@@ -1,0 +1,61 @@
+---
+import B2BLayout from "../../layouts/b2b/Layout.astro";
+import PageHero from "../../components/b2b/PageHero.astro";
+import { b2bImages } from "../../data/b2b-images";
+
+const items = b2bImages.realizacje.map((image, index) => ({
+  image,
+  title: [
+    "Realizacja produkcyjna",
+    "Zabudowa meblowa",
+    "Elementy nesting CNC",
+    "Montaż kontraktowy",
+    "Oklejanie i rozkrój",
+    "Projekt i wykonanie",
+  ][index] ?? `Realizacja ${index + 1}`,
+  meta: "BT Wood Studio",
+}));
+---
+
+<B2BLayout
+  title="Nasze realizacje"
+  description="Wybrane realizacje produkcyjne i montażowe BT Wood Studio dla klientów B2B."
+>
+  <PageHero
+    eyebrow="Portfolio"
+    title="Nasze realizacje"
+    description="Galeria realizacji z bt-woodstudio.com — produkcja, montaż i zabudowy dla partnerów biznesowych."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        items.map((item) => (
+          <article class="b2b-card overflow-hidden">
+            <div class="aspect-[4/3] overflow-hidden bg-[var(--b2b-bg)]">
+              <img
+                src={item.image}
+                alt={item.title}
+                class="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-4">
+              <p class="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-blue-dark)]">
+                {item.meta}
+              </p>
+              <h2 class="mt-1 text-base font-semibold">{item.title}</h2>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="mt-10 text-sm text-[var(--b2b-muted)]">
+      Chcesz omówić podobne zlecenie?
+      <a href="mailto:biuro@bt-woodstudio.com" class="b2b-link">
+        biuro@bt-woodstudio.com
+      </a>
+    </p>
+  </section>
+</B2BLayout>

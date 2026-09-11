@@ -1,0 +1,139 @@
+---
+import B2BLayout from "../../layouts/b2b/Layout.astro";
+import PageHero from "../../components/b2b/PageHero.astro";
+import { b2bImages } from "../../data/b2b-images";
+
+const montaz = [
+  "kuchennych",
+  "pokojowych",
+  "szafy",
+  "garderoby",
+  "biurowe",
+  "realizacja trudnych zleceń nie klasyfikujących się w ramach wymogów producenta",
+  "przeróbki mebli u klienta",
+  "montaż blatów drewnianych / laminowanych / HPL",
+  "łączenie blatów na wcinkę",
+];
+
+const agd = [
+  "podłączamy wszystkie AGD",
+  "hydrauliczne",
+  "elektryczne",
+  "gazowe (sprawdzamy szczelność instalacji i prawidłowość podłączenia)",
+  "uprawnienia SEP / podbijamy wszystkie podłączone przez nas urządzenia nie zakończone wtyczką",
+  "pomoc w doborze elementów niezbędnych do prawidłowego podłączenia AGD (wentylacyjne, elektryczne, wodne)",
+];
+
+const wycena = [
+  "bezpłatna wycena przed rozpoczęciem pracy",
+  "płatność po montażu",
+  "protokół z wykonanej usługi",
+];
+
+const wymiana = ["Zmywarki", "Płyty indukcyjne", "Okapy", "Zlewy"];
+---
+
+<B2BLayout
+  title="Usługa montażu mebli"
+  description="Montaż mebli kuchennych, biurowych i niestandardowych. Narzędzia Festool, podłączenia AGD, uprawnienia SEP."
+>
+  <PageHero
+    eyebrow="Usługi"
+    title="Usługa montażu mebli"
+    description="Dodatkowo wykonujemy usługi w zakresie montażu mebli zakupionych przez klienta. Pracujemy na narzędziach niemieckiej firmy Festool — stworzonych dla profesjonalistów, głównie do obróbki drewna. Dzięki temu efekt końcowy naszej pracy jest bezkonkurencyjny."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mb-8 grid gap-3 sm:grid-cols-3">
+      {
+        b2bImages.montaz.map((src, i) => (
+          <div class="b2b-card overflow-hidden">
+            <img
+              src={src}
+              alt={`Montaż mebli — zdjęcie ${i + 1}`}
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="grid gap-4 lg:grid-cols-2">
+      <article class="b2b-card p-6">
+        <h2 class="text-lg font-semibold">Montaż mebli</h2>
+        <ul class="mt-4 space-y-2 text-sm leading-relaxed text-[var(--b2b-muted)]">
+          {
+            montaz.map((item) => (
+              <li class="flex gap-3">
+                <span
+                  class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--b2b-blue)]"
+                  aria-hidden="true"
+                />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+
+      <article class="b2b-card p-6">
+        <h2 class="text-lg font-semibold">Podłączenia AGD</h2>
+        <ul class="mt-4 space-y-2 text-sm leading-relaxed text-[var(--b2b-muted)]">
+          {
+            agd.map((item) => (
+              <li class="flex gap-3">
+                <span
+                  class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--b2b-blue)]"
+                  aria-hidden="true"
+                />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+
+      <article class="border border-[var(--b2b-border)] bg-[var(--b2b-bg)] p-6">
+        <h2 class="text-lg font-semibold">Wycena</h2>
+        <ul class="mt-4 space-y-2 text-sm leading-relaxed text-[var(--b2b-muted)]">
+          {
+            wycena.map((item) => (
+              <li class="flex gap-3">
+                <span
+                  class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--b2b-blue)]"
+                  aria-hidden="true"
+                />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+
+      <article class="border border-[var(--b2b-border)] bg-[var(--b2b-bg)] p-6">
+        <h2 class="text-lg font-semibold">Wymiana starego AGD</h2>
+        <ul class="mt-4 space-y-2 text-sm leading-relaxed text-[var(--b2b-muted)]">
+          {
+            wymiana.map((item) => (
+              <li class="flex gap-3">
+                <span
+                  class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--b2b-blue)]"
+                  aria-hidden="true"
+                />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+    </div>
+
+    <p class="mt-10 text-sm text-[var(--b2b-muted)]">
+      Skontaktuj się z nami:
+      <a href="mailto:biuro@bt-woodstudio.com" class="b2b-link">
+        biuro@bt-woodstudio.com
+      </a>
+    </p>
+  </section>
+</B2BLayout>

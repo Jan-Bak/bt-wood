@@ -1,0 +1,112 @@
+/* B2B theme — logo-aligned, sans-only, high readability */
+[data-b2b] {
+  --b2b-blue: #40bcf4;
+  --b2b-blue-dark: #1f9fd9;
+  --b2b-silver: #c4c4c4;
+  --b2b-ink: #111827;
+  --b2b-muted: #4b5563;
+  --b2b-subtle: #6b7280;
+  --b2b-bg: #f4f6f8;
+  --b2b-surface: #ffffff;
+  --b2b-border: #d9dee5;
+  --b2b-dark: #0b1220;
+
+  color: var(--b2b-ink);
+  background: var(--b2b-surface);
+  font-family: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-b2b] h1,
+[data-b2b] h2,
+[data-b2b] h3,
+[data-b2b] h4,
+[data-b2b] h5,
+[data-b2b] h6 {
+  font-family: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--b2b-ink);
+}
+
+[data-b2b] a {
+  color: inherit;
+}
+
+[data-b2b] .b2b-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--b2b-blue);
+  color: #041018;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.25rem;
+  transition: background 0.15s ease;
+}
+
+[data-b2b] .b2b-btn:hover {
+  background: var(--b2b-blue-dark);
+  color: #fff;
+}
+
+[data-b2b] .b2b-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--b2b-border);
+  color: var(--b2b-ink);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.25rem;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+[data-b2b] .b2b-btn-ghost:hover {
+  border-color: var(--b2b-blue);
+  color: var(--b2b-blue-dark);
+}
+
+[data-b2b] .b2b-link {
+  color: var(--b2b-blue-dark);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+[data-b2b] .b2b-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--b2b-blue-dark);
+}
+
+[data-b2b] .b2b-card {
+  border: 1px solid var(--b2b-border);
+  background: var(--b2b-surface);
+}
+
+[data-b2b] .b2b-input {
+  width: 100%;
+  border: 1px solid var(--b2b-border);
+  background: #f9fafb;
+  padding: 0.75rem 0.85rem;
+  font-size: 0.95rem;
+  color: var(--b2b-ink);
+  outline: none;
+}
+
+[data-b2b] .b2b-input:focus {
+  border-color: var(--b2b-blue);
+  box-shadow: 0 0 0 3px rgba(64, 188, 244, 0.2);
+}

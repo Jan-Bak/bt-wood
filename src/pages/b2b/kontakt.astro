@@ -1,0 +1,148 @@
+---
+import B2BLayout from "../../layouts/b2b/Layout.astro";
+import PageHero from "../../components/b2b/PageHero.astro";
+import { b2bImages } from "../../data/b2b-images";
+
+const team = [
+  {
+    name: "Tomek",
+    email: "tomasz@bt-woodstudio.com",
+    phone: "+48 791 374 837",
+    phoneHref: "+48791374837",
+    image: b2bImages.kontakt[0],
+  },
+  {
+    name: "Bartek",
+    email: "bartlomiej@bt-woodstudio.com",
+    phone: "+48 606 634 401",
+    phoneHref: "+48606634401",
+    image: b2bImages.kontakt[1],
+  },
+];
+---
+
+<B2BLayout
+  title="Kontakt"
+  description="Kontakt B2B BT Wood Studio — Tomek, Bartek, biuro@bt-woodstudio.com, Niepołomice."
+>
+  <PageHero
+    eyebrow="Kontakt"
+    title="Kontakt"
+    description="Poznaj zespół i umów współpracę produkcyjną lub montażową."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <div class="space-y-4">
+        <article class="border border-[var(--b2b-border)] bg-[var(--b2b-bg)] p-6">
+          <p class="b2b-eyebrow">Biuro</p>
+          <a
+            href="mailto:biuro@bt-woodstudio.com"
+            class="mt-3 block text-lg font-semibold text-[var(--b2b-blue-dark)] hover:underline"
+          >
+            biuro@bt-woodstudio.com
+          </a>
+          <div class="mt-5 text-sm leading-relaxed text-[var(--b2b-muted)]">
+            <p class="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]">
+              Dojazd
+            </p>
+            <p class="mt-2">
+              ul. Pionierów 5A<br />
+              32-005 Niepołomice
+            </p>
+          </div>
+        </article>
+
+        {
+          team.map((person) => (
+            <article class="b2b-card overflow-hidden">
+              <div class="grid sm:grid-cols-[120px_1fr]">
+                <div class="aspect-square bg-[var(--b2b-bg)] sm:aspect-auto">
+                  <img
+                    src={person.image}
+                    alt={person.name}
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-5">
+                  <p class="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-blue-dark)]">
+                    Wizytówka
+                  </p>
+                  <h2 class="mt-1 text-xl font-semibold">{person.name}</h2>
+                  <ul class="mt-3 space-y-1.5 text-sm text-[var(--b2b-muted)]">
+                    <li>
+                      <a href={`mailto:${person.email}`} class="b2b-link">
+                        {person.email}
+                      </a>
+                    </li>
+                    <li>
+                      <a href={`tel:${person.phoneHref}`} class="hover:text-[var(--b2b-ink)]">
+                        TEL: {person.phone}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <article class="b2b-card p-6 sm:p-8">
+        <p class="b2b-eyebrow">Zapytanie B2B</p>
+        <h2 class="mt-2 text-2xl font-semibold">Napisz w sprawie współpracy</h2>
+        <p class="mt-3 text-sm leading-relaxed text-[var(--b2b-muted)]">
+          Opisz zakres (nesting, oklejanie, montaż, projekt) — odezwiemy się z
+          kolejnymi krokami.
+        </p>
+
+        <form class="mt-6 grid gap-4">
+          <label class="block text-sm">
+            <span class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]">
+              Firma / Imię
+            </span>
+            <input
+              type="text"
+              placeholder="Nazwa firmy lub imię"
+              class="b2b-input"
+            />
+          </label>
+          <label class="block text-sm">
+            <span class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]">
+              Email
+            </span>
+            <input
+              type="email"
+              placeholder="firma@email.com"
+              class="b2b-input"
+            />
+          </label>
+          <label class="block text-sm">
+            <span class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]">
+              Temat
+            </span>
+            <input
+              type="text"
+              placeholder="np. wycena nestingu / montaż kuchni"
+              class="b2b-input"
+            />
+          </label>
+          <label class="block text-sm">
+            <span class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]">
+              Wiadomość
+            </span>
+            <textarea
+              rows="6"
+              placeholder="Zakres prac, terminy, załączniki do przesłania mailowo..."
+              class="b2b-input resize-y"
+            ></textarea>
+          </label>
+          <button type="button" class="b2b-btn w-full sm:w-auto">
+            Wyślij zapytanie
+          </button>
+        </form>
+      </article>
+    </div>
+  </section>
+</B2BLayout>

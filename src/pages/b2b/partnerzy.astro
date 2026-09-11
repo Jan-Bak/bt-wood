@@ -1,0 +1,76 @@
+---
+import B2BLayout from "../../layouts/b2b/Layout.astro";
+import PageHero from "../../components/b2b/PageHero.astro";
+import { b2bImages } from "../../data/b2b-images";
+
+const partnerTypes = [
+  {
+    title: "Salony meblowe",
+    description:
+      "Wsparcie produkcyjne i montażowe dla ekspozycji oraz realizacji u klientów końcowych.",
+  },
+  {
+    title: "Producenci i stolarnie",
+    description:
+      "Outsourcing nestingu CNC, oklejania i przygotowania elementów pod Waszą montażownię.",
+  },
+  {
+    title: "Architekci i generalni wykonawcy",
+    description:
+      "Zabudowy kontraktowe, pomiary, dokumentacja CAD i terminowa realizacja na obiekcie.",
+  },
+  {
+    title: "Dostawcy płyt i okuć",
+    description:
+      "Stała współpraca materiałowa zapewniająca powtarzalną jakość i dostępność komponentów.",
+  },
+];
+---
+
+<B2BLayout
+  title="Partnerzy"
+  description="Współpracujący partnerzy BT Wood Studio — salony, producenci, architekci i dostawcy."
+>
+  <PageHero
+    eyebrow="Sieć współpracy"
+    title="Partnerzy"
+    description="Budujemy długoterminowe relacje z firmami, które potrzebują rzetelnego zaplecza produkcyjnego i montażowego. Jeśli chcesz dołączyć do grona współpracujących partnerów — napisz do nas."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mb-8 overflow-hidden border border-[var(--b2b-border)]">
+      <img
+        src={b2bImages.home[5]}
+        alt="Współpraca partnerska BT Wood Studio"
+        class="aspect-[21/8] w-full object-cover"
+      />
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      {
+        partnerTypes.map((partner) => (
+          <article class="b2b-card p-6">
+            <h2 class="text-lg font-semibold">{partner.title}</h2>
+            <p class="mt-3 text-sm leading-relaxed text-[var(--b2b-muted)]">
+              {partner.description}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 border border-[var(--b2b-border)] bg-[var(--b2b-bg)] p-6 sm:p-8">
+      <h2 class="text-xl font-semibold">Zostań partnerem</h2>
+      <p class="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--b2b-muted)]">
+        Oryginalna strona partnerska jest w rozbudowie. Tymczasem zapraszamy do
+        bezpośredniego kontaktu w sprawie współpracy B2B:
+        <a href="mailto:biuro@bt-woodstudio.com" class="b2b-link">
+          biuro@bt-woodstudio.com
+        </a>
+      </p>
+      <a href="/b2b/kontakt" class="b2b-btn mt-6 inline-flex">
+        Przejdź do kontaktu
+      </a>
+    </div>
+  </section>
+</B2BLayout>

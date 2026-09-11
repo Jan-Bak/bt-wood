@@ -1,0 +1,89 @@
+---
+import B2BLayout from "../../layouts/b2b/Layout.astro";
+import PageHero from "../../components/b2b/PageHero.astro";
+import { b2bImages } from "../../data/b2b-images";
+
+const projects = [
+  {
+    name: "Nesting i oklejanie serii",
+    detail: "Szczegóły projektu 1",
+    summary:
+      "Przygotowanie plików CAD, optymalizacja rozkroju i produkcja elementów z oklejeniem krawędzi pod montaż u partnera.",
+    metrics: ["CAD + nesting", "Seria produkcyjna", "Oklejanie ABS"],
+    image: b2bImages.home[0],
+  },
+  {
+    name: "Zabudowa salonu meblowego",
+    detail: "Szczegóły projektu 2",
+    summary:
+      "Projekt i wykonanie ekspozycji: lady, regały i zabudowy pokazowe z pomiarem na obiekcie oraz montażem.",
+    metrics: ["Pomiar", "Produkcja", "Montaż"],
+    image: b2bImages.home[1],
+  },
+  {
+    name: "Kuchnie kontraktowe",
+    detail: "Szczegóły projektu 3",
+    summary:
+      "Realizacja montażu mebli kuchennych z podłączeniem AGD (hydraulika, elektryka, gaz) oraz protokołem odbioru.",
+    metrics: ["Festool", "SEP", "Protokół"],
+    image: b2bImages.montaz[0],
+  },
+  {
+    name: "Wsparcie projektowe B2B",
+    detail: "Szczegóły projektu 4",
+    summary:
+      "Wycena i dokumentacja projektów meblowych — od koncepcji po pliki produkcyjne dla nestingu CNC.",
+    metrics: ["Wycena", "Dokumentacja", "CNC"],
+    image: b2bImages.home[2],
+  },
+];
+---
+
+<B2BLayout
+  title="Projekty"
+  description="Projekty B2B BT Wood Studio — produkcja, dokumentacja CAD i montaż."
+>
+  <PageHero
+    eyebrow="Projekty"
+    title="Projekty"
+    description="Wybrane typy współpracy projektowo-produkcyjnej. Każdy projekt domykamy jasnym zakresem, terminem i odpowiedzialnością."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid gap-4">
+      {
+        projects.map((project, index) => (
+          <article class="b2b-card grid overflow-hidden sm:grid-cols-[0.9fr_1.1fr]">
+            <div class="aspect-[16/11] bg-[var(--b2b-bg)] sm:aspect-auto sm:min-h-[220px]">
+              <img
+                src={project.image}
+                alt={project.name}
+                class="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6 sm:p-7">
+              <p class="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-blue-dark)]">
+                {project.detail}
+              </p>
+              <h2 class="mt-2 text-xl font-semibold">
+                <span class="mr-2 text-[var(--b2b-silver)]">0{index + 1}</span>
+                {project.name}
+              </h2>
+              <p class="mt-3 text-sm leading-relaxed text-[var(--b2b-muted)] sm:text-[0.95rem]">
+                {project.summary}
+              </p>
+              <ul class="mt-5 flex flex-wrap gap-2">
+                {project.metrics.map((metric) => (
+                  <li class="border border-[var(--b2b-border)] bg-[var(--b2b-bg)] px-2.5 py-1 text-[0.68rem] font-medium text-[var(--b2b-muted)]">
+                    {metric}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</B2BLayout>
