@@ -1,0 +1,79 @@
+---
+import Divider from "./Divider.astro";
+import Reveal from "./Reveal.astro";
+
+const pillars = [
+  {
+    title: "Projektowanie",
+    description:
+      "Wizualizacje, układy funkcjonalne i rysunki techniczne dopasowane do Twojej przestrzeni oraz sposobu życia.",
+  },
+  {
+    title: "Wykonanie na wymiar",
+    description:
+      "Zamówienie materiałów, precyzyjne stolarstwo i montaż mebli — od kuchni, przez szafy, po indywidualne zabudowy.",
+  },
+];
+---
+
+<section id="services" class="border-b border-stone-300/80 bg-stone-100 py-12">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <Reveal delay={0} class="flex items-center gap-4">
+      <span class="text-[0.68rem] uppercase tracking-[0.38em] text-stone-500">
+        1 Usługi
+      </span>
+      <div class="flex-1">
+        <Divider class="bg-stone-400" />
+      </div>
+    </Reveal>
+
+    <div class="grid gap-10 pt-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <Reveal delay={120}>
+        <p class="text-[0.65rem] uppercase tracking-[0.3em] text-stone-500">
+          Czym się zajmujemy
+        </p>
+        <h2
+          class="mt-4 max-w-md font-[family-name:var(--font-display)] text-5xl leading-none text-stone-900 sm:text-6xl"
+        >
+          Projektujemy i wykonujemy meble na wymiar
+        </h2>
+      </Reveal>
+
+      <Reveal delay={220} class="space-y-5 self-end">
+        <p class="max-w-xl text-base leading-relaxed text-stone-600">
+          Zajmujemy się kompleksowym projektowaniem i wykonaniem mebli na
+          wymiar — od pierwszej konsultacji, przez dobór materiałów, aż po
+          montaż w gotowym wnętrzu.
+        </p>
+        <p class="max-w-xl text-base leading-relaxed text-stone-600">
+          Niezależnie od tego, czy urządzasz nowe mieszkanie, czy odnawiasz
+          przestrzeń po latach — dopasujemy zabudowę do Twoich potrzeb, stylu i
+          budżetu. Pracujemy na sprawdzonych, wysokiej jakości materiałach.
+        </p>
+      </Reveal>
+    </div>
+
+    <div class="mt-12 grid gap-px border border-stone-300 bg-stone-300 md:grid-cols-2">
+      {
+        pillars.map((pillar, index) => (
+          <Reveal
+            delay={280 + index * 100}
+            class="bg-stone-50 p-8 sm:p-10"
+          >
+            <p class="text-[0.62rem] uppercase tracking-[0.28em] text-stone-500">
+              0{index + 1}
+            </p>
+            <h3
+              class="mt-4 font-[family-name:var(--font-display)] text-3xl leading-none text-stone-900 sm:text-4xl"
+            >
+              {pillar.title}
+            </h3>
+            <p class="mt-4 max-w-md text-sm leading-relaxed text-stone-600 sm:text-base">
+              {pillar.description}
+            </p>
+          </Reveal>
+        ))
+      }
+    </div>
+  </div>
+</section>

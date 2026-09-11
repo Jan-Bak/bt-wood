@@ -1,0 +1,95 @@
+---
+import Divider from "./Divider.astro";
+import Reveal from "./Reveal.astro";
+
+const reviews = [
+  {
+    name: "Robert",
+    role: "Klient",
+    text: "Firma spisała się bardzo dobrze — od planowania projektu, przez dobór materiałów, po montaż. Zawsze można było liczyć na porady i jasną informację o przebiegu prac. Efekt bez opóźnień, z dbałością o detale.",
+  },
+  {
+    name: "Ewa",
+    role: "Klientka",
+    text: "Podeszli indywidualnie i wzięli pod uwagę każdy szczegół, na którym mi zależało. Współpraca od początku przebiegała w miłej, profesjonalnej atmosferze. Po roku użytkowania jakość zabudowy nadal jest bez zarzutu.",
+  },
+  {
+    name: "Monika",
+    role: "Klientka",
+    text: "Projekt był nietypowy, a wymagania skomplikowane. Przez cały okres współpracy byłam zadowolona — cena usług jest uzasadniona jakością, którą dostarczają. Dzięki Wam mam swoje wymarzone miejsce.",
+  },
+  {
+    name: "Karolina",
+    role: "Klientka",
+    text: "Projektantka idealnie trafiła w mój gust i podpowiadała najlepsze rozwiązania. Bardzo dobry kontakt, a realizacja ekspresowa — szybkość nie szła kosztem jakości. Polecam osobom, które cenią spokój.",
+  },
+  {
+    name: "Michał",
+    role: "Klient",
+    text: "Pełen profesjonalizm, terminowość i doradztwo na każdym etapie. Kuchnia, garderoba, łazienka — wszystko z wiernym odwzorowaniem projektu. Jeśli chcecie cieszyć się wnętrzem przez lata, warto zaufać temu studio.",
+  },
+  {
+    name: "Renata",
+    role: "Klientka",
+    text: "Wszystko poszło zgodnie z planem — zarówno na etapie projektowania, gdzie uwagi zostały uwzględnione, jak i podczas realizacji. Bardzo przyjemna i owocna współpraca.",
+  },
+];
+---
+
+<section
+  id="testimonials"
+  class="border-b border-stone-300/80 bg-stone-100 py-12"
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <Reveal delay={0} class="flex items-center gap-4">
+      <span class="text-[0.68rem] uppercase tracking-[0.38em] text-stone-500">
+        5 Opinie
+      </span>
+      <div class="flex-1">
+        <Divider class="bg-stone-400" />
+      </div>
+    </Reveal>
+
+    <div class="grid gap-8 pt-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end lg:gap-16">
+      <Reveal delay={120}>
+        <p class="text-[0.65rem] uppercase tracking-[0.3em] text-stone-500">
+          Tak nas oceniają
+        </p>
+        <h2
+          class="mt-4 max-w-sm font-[family-name:var(--font-display)] text-5xl leading-none text-stone-900 sm:text-6xl"
+        >
+          Głosy klientów
+        </h2>
+      </Reveal>
+
+      <Reveal delay={200}>
+        <p class="max-w-xl text-base leading-relaxed text-stone-600">
+          Najlepszą rekomendacją są realizacje, w których można po prostu
+          zamieszkać. Oto, jak współpracę z nami opisują osoby, które przeszły
+          cały proces — od projektu po montaż.
+        </p>
+      </Reveal>
+    </div>
+
+    <div class="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {
+        reviews.map((review, index) => (
+          <Reveal
+            delay={240 + index * 70}
+            class="flex h-full flex-col border border-stone-300 bg-stone-50 p-6 sm:p-7"
+          >
+            <p class="flex-1 text-sm leading-relaxed text-stone-700 sm:text-base">
+              „{review.text}”
+            </p>
+            <div class="mt-8 border-t border-stone-200 pt-5">
+              <p class="text-base font-medium text-stone-900">{review.name}</p>
+              <p class="mt-1 text-[0.62rem] uppercase tracking-[0.24em] text-stone-500">
+                {review.role}
+              </p>
+            </div>
+          </Reveal>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,95 @@
+---
+import Divider from "./Divider.astro";
+import Reveal from "./Reveal.astro";
+
+const steps = [
+  {
+    title: "Pierwsze spotkanie",
+    description:
+      "Rozmowa o oczekiwaniach, terminie, stylu i budżecie — w studio lub online.",
+  },
+  {
+    title: "Rozpoczęcie współpracy",
+    description:
+      "Określenie zakresu prac projektowych i wykonawczych oraz podpisanie umowy.",
+  },
+  {
+    title: "Projekt zabudowy",
+    description:
+      "Indywidualny projekt dopasowany do wymiarów, funkcji i charakteru wnętrza.",
+  },
+  {
+    title: "Dobór materiałów",
+    description:
+      "Kompletowanie frontów, blatów, uchwytów i detali — z możliwością obejrzenia próbek.",
+  },
+  {
+    title: "Produkcja i montaż",
+    description:
+      "Wykonanie mebli w stolarni oraz precyzyjny montaż na miejscu inwestycji.",
+  },
+  {
+    title: "Odbiór",
+    description:
+      "Przekazanie gotowej zabudowy, instrukcja użytkowania i domknięcie współpracy.",
+  },
+];
+---
+
+<section id="process" class="border-b border-stone-300/80 bg-stone-100 py-12">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <Reveal delay={0} class="flex items-center gap-4">
+      <span class="text-[0.68rem] uppercase tracking-[0.38em] text-stone-500">
+        4 Proces
+      </span>
+      <div class="flex-1">
+        <Divider class="bg-stone-400" />
+      </div>
+    </Reveal>
+
+    <div class="grid gap-8 pt-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end lg:gap-16">
+      <Reveal delay={120}>
+        <p class="text-[0.65rem] uppercase tracking-[0.3em] text-stone-500">
+          Współpraca
+        </p>
+        <h2
+          class="mt-4 max-w-md font-[family-name:var(--font-display)] text-5xl leading-none text-stone-900 sm:text-6xl"
+        >
+          Jak przebiega nasza współpraca
+        </h2>
+      </Reveal>
+
+      <Reveal delay={200}>
+        <p class="max-w-xl text-base leading-relaxed text-stone-600">
+          Prowadzimy Cię przez każdy etap — od pierwszej rozmowy po odbiór
+          gotowych mebli. Ty podejmujesz decyzje projektowe, my dbamy o
+          terminowość, jakość i spokój procesu.
+        </p>
+      </Reveal>
+    </div>
+
+    <ol class="mt-12 grid gap-px border border-stone-300 bg-stone-300 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        steps.map((step, index) => (
+          <Reveal
+            delay={240 + index * 70}
+            as="li"
+            class="bg-stone-50 p-7 sm:p-8"
+          >
+            <p class="text-[0.62rem] uppercase tracking-[0.28em] text-stone-500">
+              Krok {String(index + 1).padStart(2, "0")}
+            </p>
+            <h3
+              class="mt-4 font-[family-name:var(--font-display)] text-2xl leading-tight text-stone-900 sm:text-3xl"
+            >
+              {step.title}
+            </h3>
+            <p class="mt-4 text-sm leading-relaxed text-stone-600">
+              {step.description}
+            </p>
+          </Reveal>
+        ))
+      }
+    </ol>
+  </div>
+</section>

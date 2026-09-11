@@ -1,0 +1,45 @@
+---
+import Reveal from "./Reveal.astro";
+---
+
+<section id="consultation" class="border-b border-stone-300/80 bg-stone-900 py-16 sm:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:gap-16">
+      <Reveal delay={80}>
+        <p class="text-[0.65rem] uppercase tracking-[0.3em] text-stone-400">
+          Konsultacja
+        </p>
+        <h2
+          class="mt-4 max-w-xl font-[family-name:var(--font-display)] text-4xl leading-none text-stone-50 sm:text-5xl lg:text-6xl"
+        >
+          Wykończenie bez stresu — z nami to możliwe
+        </h2>
+        <p class="mt-5 max-w-lg text-base leading-relaxed text-stone-300">
+          Kupno domu lub mieszkania to dopiero początek. Jeśli brakuje Ci
+          czasu, wiedzy technicznej albo po prostu chcesz uniknąć chaosu
+          remontu — powierz nam projekt i wykonanie mebli na wymiar.
+        </p>
+      </Reveal>
+
+      <Reveal delay={180} class="space-y-5 lg:justify-self-end">
+        <div class="border border-stone-700 bg-stone-950/50 p-6 text-sm text-stone-300">
+          <p class="text-[0.62rem] uppercase tracking-[0.24em] text-stone-500">
+            Co ustalimy
+          </p>
+          <ul class="mt-4 space-y-3">
+            <li>Zakres zabudowy i priorytety funkcjonalne</li>
+            <li>Orientacyjny budżet i termin realizacji</li>
+            <li>Kolejne kroki — od pomiarów po montaż</li>
+          </ul>
+        </div>
+
+        <a
+          href="/i/#contact"
+          class="inline-flex w-full items-center justify-center border border-[#d7c7ac] bg-[#d7c7ac] px-5 py-3 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-stone-900 transition hover:bg-[#e7d8bc] sm:w-auto"
+        >
+          Umów konsultację
+        </a>
+      </Reveal>
+    </div>
+  </div>
+</section>
