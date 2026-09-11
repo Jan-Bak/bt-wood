@@ -15,28 +15,28 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
 ---
 
 <header
-  class="sticky top-0 z-50 border-b border-stone-200 bg-white/95 backdrop-blur-md"
+  class="sticky top-0 z-50 border-b border-[var(--b2b-border)] bg-white/95 backdrop-blur-md"
 >
   <div
     class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8"
   >
-    <a href="/b2b/" class="flex items-center gap-3" aria-label="BT Wood Studio B2B">
-      <img
-        src={logo.src}
-        alt=""
-        class="h-8 w-8 object-cover grayscale"
-      />
+    <a
+      href="/b2b/"
+      class="flex items-center gap-3"
+      aria-label="BT Wood Studio B2B"
+    >
+      <img src={logo.src} alt="" class="h-9 w-9 object-contain" />
       <div class="leading-tight">
-        <p class="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-stone-900">
+        <p class="text-[0.78rem] font-semibold tracking-wide text-[var(--b2b-ink)]">
           BT Wood Studio
         </p>
-        <p class="text-[0.62rem] uppercase tracking-[0.18em] text-stone-500">
+        <p class="text-[0.68rem] font-medium tracking-wide text-[var(--b2b-blue-dark)]">
           Współpraca B2B
         </p>
       </div>
     </a>
 
-    <nav aria-label="Nawigacja B2B" class="hidden items-center gap-1 lg:flex">
+    <nav aria-label="Nawigacja B2B" class="hidden items-center gap-0.5 lg:flex">
       {
         navItems.map((item) => {
           const hrefPath = item.href.replace(/\/$/, "") || "/b2b";
@@ -47,12 +47,12 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
             <a
               href={item.href}
               class:list={[
-                "px-3 py-2 text-[0.72rem] uppercase tracking-[0.14em] transition",
+                "px-3 py-2 text-[0.78rem] font-medium transition",
                 item.primary
-                  ? "bg-stone-900 text-stone-50 hover:bg-stone-700"
+                  ? "b2b-btn !py-2"
                   : active
-                    ? "bg-stone-100 text-stone-900"
-                    : "text-stone-600 hover:bg-stone-50 hover:text-stone-900",
+                    ? "bg-[rgba(64,188,244,0.12)] text-[var(--b2b-ink)]"
+                    : "text-[var(--b2b-muted)] hover:bg-[var(--b2b-bg)] hover:text-[var(--b2b-ink)]",
               ]}
             >
               {item.label}
@@ -64,7 +64,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
 
     <button
       type="button"
-      class="text-[0.72rem] uppercase tracking-[0.16em] text-stone-700 lg:hidden"
+      class="text-[0.78rem] font-semibold text-[var(--b2b-ink)] lg:hidden"
       aria-expanded="false"
       aria-controls="b2b-mobile-nav"
       data-b2b-menu
@@ -86,8 +86,10 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
           <a
             href={item.href}
             class:list={[
-              "block border-b border-stone-200 px-2 py-4 text-sm uppercase tracking-[0.14em]",
-              item.primary ? "font-medium text-stone-900" : "text-stone-700",
+              "block border-b border-[var(--b2b-border)] px-2 py-4 text-base font-medium",
+              item.primary
+                ? "text-[var(--b2b-blue-dark)]"
+                : "text-[var(--b2b-ink)]",
             ]}
           >
             {item.label}
@@ -95,10 +97,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
         ))
       }
     </nav>
-    <a
-      href="/"
-      class="mt-auto border border-stone-300 px-4 py-3 text-center text-[0.72rem] uppercase tracking-[0.14em] text-stone-700"
-    >
+    <a href="/" class="b2b-btn-ghost mt-auto text-center">
       Wróć do wyboru ścieżki
     </a>
   </div>
