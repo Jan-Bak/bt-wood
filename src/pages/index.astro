@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import PageSelector from "../components/page-selector.astro";
 import clientImage from "../assets/bt-11.jpg";
 import logo from "../assets/logo.png";
+import { Image } from "astro:assets";
+import b2bImage from "../assets/agent-agreement.jpg";
 ---
 
 <Layout title="BT Wood Studio" description="TBA: Meble na wymiar">
@@ -14,8 +16,8 @@ import logo from "../assets/logo.png";
       aria-label="BT Wood Studio - strona główna"
       class="absolute left-1/2 top-5 z-20 -translate-x-1/2 rounded-full p-2 transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-stone-500/60 md:top-8"
     >
-      <img
-        src={logo.src}
+      <Image
+        src={logo}
         alt="BT Wood Studio logo"
         class="h-14 w-14 object-contain md:h-16 md:w-16"
       />
@@ -30,7 +32,7 @@ import logo from "../assets/logo.png";
       name="Współpraca B2B"
       description="Zaproś nas do współpracy i otrzymasz specjalne warunki"
       linkTo="/b2b"
-      image="https://www.salesfocusinc.com/wp-content/uploads/2025/01/B2B-Client-Acquisition.png"
+      image={b2bImage}
     />
   </main>
 </Layout>

@@ -1,36 +1,48 @@
 ---
 import B2BLayout from "../../layouts/b2b/Layout.astro";
 import PageHero from "../../components/b2b/PageHero.astro";
-import { b2bImages } from "../../data/b2b-images";
+import { Image } from "astro:assets";
+import cncImage from "../../assets/next_cnc.webp";
 
-const montaz = [
-  "kuchennych",
-  "pokojowych",
-  "szafy",
-  "garderoby",
-  "biurowe",
-  "realizacja trudnych zleceń nie klasyfikujących się w ramach wymogów producenta",
-  "przeróbki mebli u klienta",
-  "montaż blatów drewnianych / laminowanych / HPL",
-  "łączenie blatów na wcinkę",
-];
-
-const agd = [
-  "podłączamy wszystkie AGD",
-  "hydrauliczne",
-  "elektryczne",
-  "gazowe (sprawdzamy szczelność instalacji i prawidłowość podłączenia)",
-  "uprawnienia SEP / podbijamy wszystkie podłączone przez nas urządzenia nie zakończone wtyczką",
-  "pomoc w doborze elementów niezbędnych do prawidłowego podłączenia AGD (wentylacyjne, elektryczne, wodne)",
-];
-
-const wycena = [
-  "bezpłatna wycena przed rozpoczęciem pracy",
-  "płatność po montażu",
-  "protokół z wykonanej usługi",
-];
-
-const wymiana = ["Zmywarki", "Płyty indukcyjne", "Okapy", "Zlewy"];
+const services = {
+  assembly: {
+    title: "Montaż mebli",
+    items: [
+      "kuchennych",
+      "pokojowych",
+      "szaf",
+      "garderob",
+      "biurowych",
+      "realizacja trudnych zleceń nieklasyfikujących się w ramach wymogów producenta",
+      "przeróbki mebli u klienta",
+      "montaż blatów drewnianych / laminowanych / HPL",
+      "łączenie blatów na wcinkę",
+    ],
+  },
+  appliances: {
+    title: "Podłączenie AGD",
+    items: [
+      "podłączamy wszystkie AGD",
+      "hydrauliczne",
+      "elektryczne",
+      "gazowe (sprawdzamy szczelność instalacji i prawidłowość podłączenia)",
+      "uprawnienia SEP — podbijamy wszystkie podłączone przez nas urządzenia nie zakończone wtyczką",
+      "pomoc w doborze elementów niezbędnych do prawidłowego podłączenia AGD (wentylacyjne, elektryczne, wodne)",
+    ],
+  },
+  pricing: {
+    title: "Wycena i rozliczenie",
+    items: [
+      "bezpłatna wycena przed rozpoczęciem pracy",
+      "płatność po montażu",
+      "protokół z wykonanej usługi",
+    ],
+  },
+  replacement: {
+    title: "Wymiana urządzeń",
+    items: ["Zmywarki", "Płyty indukcyjne", "Okapy", "Zlewy"],
+  },
+} as const;
 ---
 
 <B2BLayout
@@ -46,10 +58,10 @@ const wymiana = ["Zmywarki", "Płyty indukcyjne", "Okapy", "Zlewy"];
   <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
     <div class="mb-8 grid gap-3 sm:grid-cols-3">
       {
-        b2bImages.montaz.map((src, i) => (
+        [...Array(3)].map((i) => (
           <div class="b2b-card overflow-hidden">
-            <img
-              src={src}
+            <Image
+              src={cncImage}
               alt={`Montaż mebli — zdjęcie ${i + 1}`}
               class="aspect-[4/3] w-full object-cover"
               loading="lazy"
@@ -62,9 +74,11 @@ const wymiana = ["Zmywarki", "Płyty indukcyjne", "Okapy", "Zlewy"];
     <div class="grid gap-4 lg:grid-cols-2">
       <article class="b2b-card p-6">
         <h2 class="text-lg font-semibold">Montaż mebli</h2>
-        <ul class="mt-4 space-y-2 text-sm leading-relaxed text-[var(--b2b-muted)]">
+        <ul
+          class="mt-4 space-y-2 text-sm leading-relaxed text-[var(--b2b-muted)]"
+        >
           {
-            montaz.map((item) => (
+            services.assembly.items.map((item) => (
               <li class="flex gap-3">
                 <span
                   class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--b2b-blue)]"
@@ -79,9 +93,11 @@ const wymiana = ["Zmywarki", "Płyty indukcyjne", "Okapy", "Zlewy"];
 
       <article class="b2b-card p-6">
         <h2 class="text-lg font-semibold">Podłączenia AGD</h2>
-        <ul class="mt-4 space-y-2 text-sm leading-relaxed text-[var(--b2b-muted)]">
+        <ul
+          class="mt-4 space-y-2 text-sm leading-relaxed text-[var(--b2b-muted)]"
+        >
           {
-            agd.map((item) => (
+            services.appliances.items.map((item) => (
               <li class="flex gap-3">
                 <span
                   class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--b2b-blue)]"
@@ -96,9 +112,11 @@ const wymiana = ["Zmywarki", "Płyty indukcyjne", "Okapy", "Zlewy"];
 
       <article class="border border-[var(--b2b-border)] bg-[var(--b2b-bg)] p-6">
         <h2 class="text-lg font-semibold">Wycena</h2>
-        <ul class="mt-4 space-y-2 text-sm leading-relaxed text-[var(--b2b-muted)]">
+        <ul
+          class="mt-4 space-y-2 text-sm leading-relaxed text-[var(--b2b-muted)]"
+        >
           {
-            wycena.map((item) => (
+            services.pricing.items.map((item) => (
               <li class="flex gap-3">
                 <span
                   class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--b2b-blue)]"
@@ -113,9 +131,11 @@ const wymiana = ["Zmywarki", "Płyty indukcyjne", "Okapy", "Zlewy"];
 
       <article class="border border-[var(--b2b-border)] bg-[var(--b2b-bg)] p-6">
         <h2 class="text-lg font-semibold">Wymiana starego AGD</h2>
-        <ul class="mt-4 space-y-2 text-sm leading-relaxed text-[var(--b2b-muted)]">
+        <ul
+          class="mt-4 space-y-2 text-sm leading-relaxed text-[var(--b2b-muted)]"
+        >
           {
-            wymiana.map((item) => (
+            services.replacement.items.map((item) => (
               <li class="flex gap-3">
                 <span
                   class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--b2b-blue)]"

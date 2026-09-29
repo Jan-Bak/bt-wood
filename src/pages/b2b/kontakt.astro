@@ -1,7 +1,8 @@
 ---
 import B2BLayout from "../../layouts/b2b/Layout.astro";
 import PageHero from "../../components/b2b/PageHero.astro";
-import { b2bImages } from "../../data/b2b-images";
+import { Image } from "astro:assets";
+import cncImage from "../../assets/next_cnc.webp";
 
 const team = [
   {
@@ -9,14 +10,14 @@ const team = [
     email: "tomasz@bt-woodstudio.com",
     phone: "+48 791 374 837",
     phoneHref: "+48791374837",
-    image: b2bImages.kontakt[0],
+    image: cncImage,
   },
   {
     name: "Bartek",
     email: "bartlomiej@bt-woodstudio.com",
     phone: "+48 606 634 401",
     phoneHref: "+48606634401",
-    image: b2bImages.kontakt[1],
+    image: cncImage,
   },
 ];
 ---
@@ -34,7 +35,9 @@ const team = [
   <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
     <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
       <div class="space-y-4">
-        <article class="border border-[var(--b2b-border)] bg-[var(--b2b-bg)] p-6">
+        <article
+          class="border border-[var(--b2b-border)] bg-[var(--b2b-bg)] p-6"
+        >
           <p class="b2b-eyebrow">Biuro</p>
           <a
             href="mailto:biuro@bt-woodstudio.com"
@@ -43,7 +46,9 @@ const team = [
             biuro@bt-woodstudio.com
           </a>
           <div class="mt-5 text-sm leading-relaxed text-[var(--b2b-muted)]">
-            <p class="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]">
+            <p
+              class="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]"
+            >
               Dojazd
             </p>
             <p class="mt-2">
@@ -58,7 +63,7 @@ const team = [
             <article class="b2b-card overflow-hidden">
               <div class="grid sm:grid-cols-[120px_1fr]">
                 <div class="aspect-square bg-[var(--b2b-bg)] sm:aspect-auto">
-                  <img
+                  <Image
                     src={person.image}
                     alt={person.name}
                     class="h-full w-full object-cover"
@@ -77,7 +82,10 @@ const team = [
                       </a>
                     </li>
                     <li>
-                      <a href={`tel:${person.phoneHref}`} class="hover:text-[var(--b2b-ink)]">
+                      <a
+                        href={`tel:${person.phoneHref}`}
+                        class="hover:text-[var(--b2b-ink)]"
+                      >
                         TEL: {person.phone}
                       </a>
                     </li>
@@ -99,7 +107,9 @@ const team = [
 
         <form class="mt-6 grid gap-4">
           <label class="block text-sm">
-            <span class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]">
+            <span
+              class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]"
+            >
               Firma / Imię
             </span>
             <input
@@ -109,7 +119,9 @@ const team = [
             />
           </label>
           <label class="block text-sm">
-            <span class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]">
+            <span
+              class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]"
+            >
               Email
             </span>
             <input
@@ -119,7 +131,9 @@ const team = [
             />
           </label>
           <label class="block text-sm">
-            <span class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]">
+            <span
+              class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]"
+            >
               Temat
             </span>
             <input
@@ -129,14 +143,15 @@ const team = [
             />
           </label>
           <label class="block text-sm">
-            <span class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]">
+            <span
+              class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]"
+            >
               Wiadomość
             </span>
             <textarea
               rows="6"
               placeholder="Zakres prac, terminy, załączniki do przesłania mailowo..."
-              class="b2b-input resize-y"
-            ></textarea>
+              class="b2b-input resize-y"></textarea>
           </label>
           <button type="button" class="b2b-btn w-full sm:w-auto">
             Wyślij zapytanie

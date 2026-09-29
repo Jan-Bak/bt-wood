@@ -1,7 +1,8 @@
 ---
 import B2BLayout from "../../layouts/b2b/Layout.astro";
 import PageHero from "../../components/b2b/PageHero.astro";
-import { b2bImages } from "../../data/b2b-images";
+import { Image } from "astro:assets";
+import cncImage from "../../assets/next_cnc.webp";
 
 const park = [
   {
@@ -11,7 +12,7 @@ const park = [
       "Cięcie elementów meblowych pod serie i jednostkowe zlecenia",
       "Przygotowanie pod dalsze oklejanie i montaż",
     ],
-    image: b2bImages.home[0],
+    image: cncImage,
   },
   {
     title: "Oklejanie płyt",
@@ -20,7 +21,7 @@ const park = [
       "Przygotowanie elementów pod meble kontraktowe",
       "Kontrola jakości krawędzi przed wydaniem",
     ],
-    image: b2bImages.home[1],
+    image: cncImage,
   },
   {
     title: "Projektowanie i CAD",
@@ -29,7 +30,7 @@ const park = [
       "Przygotowanie dokumentacji produkcyjnej",
       "Wycena projektów na podstawie rysunków i list materiałowych",
     ],
-    image: b2bImages.home[2],
+    image: cncImage,
   },
   {
     title: "Pomiary i logistyka produkcji",
@@ -38,7 +39,7 @@ const park = [
       "Cięcie i oklejanie na zlecenie",
       "Współpraca z partnerami montażowymi i handlowymi",
     ],
-    image: b2bImages.home[3],
+    image: cncImage,
   },
 ];
 ---
@@ -59,7 +60,7 @@ const park = [
         park.map((block) => (
           <article class="b2b-card overflow-hidden">
             <div class="aspect-[16/9] bg-[var(--b2b-bg)]">
-              <img
+              <Image
                 src={block.image}
                 alt={block.title}
                 class="h-full w-full object-cover"
@@ -90,9 +91,12 @@ const park = [
     >
       <div>
         <p class="b2b-eyebrow">Oferta produkcyjna</p>
-        <p class="mt-2 max-w-xl text-sm leading-relaxed text-[var(--b2b-muted)]">
-          Potrzebujesz wyceny nestingu, oklejania lub pełnego zakresu od projektu
-          do montażu? Napisz — przygotujemy ofertę pod Twoje pliki lub pomiary.
+        <p
+          class="mt-2 max-w-xl text-sm leading-relaxed text-[var(--b2b-muted)]"
+        >
+          Potrzebujesz wyceny nestingu, oklejania lub pełnego zakresu od
+          projektu do montażu? Napisz — przygotujemy ofertę pod Twoje pliki lub
+          pomiary.
         </p>
       </div>
       <a href="/b2b/kontakt" class="b2b-btn shrink-0">Zapytaj o wycenę</a>

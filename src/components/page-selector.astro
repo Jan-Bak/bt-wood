@@ -1,9 +1,11 @@
 ---
+import { Image } from "astro:assets";
+
 interface Props {
   name: string;
   description?: string;
   linkTo?: string;
-  image?: string | ImageMetadata;
+  image?: ImageMetadata;
 }
 
 const { name, description, linkTo = "/", image } = Astro.props;
@@ -15,8 +17,8 @@ const { name, description, linkTo = "/", image } = Astro.props;
 >
   {
     image && (
-      <img
-        src={typeof image === "string" ? image : image.src}
+      <Image
+        src={image}
         alt={name}
         class="absolute inset-0 h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-75"
       />

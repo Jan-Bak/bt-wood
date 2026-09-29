@@ -1,20 +1,31 @@
 ---
 import B2BLayout from "../../layouts/b2b/Layout.astro";
 import PageHero from "../../components/b2b/PageHero.astro";
-import { b2bImages } from "../../data/b2b-images";
+import { Image } from "astro:assets";
+import cncImage from "../../assets/next_cnc.webp";
 
-const items = b2bImages.realizacje.map((image, index) => ({
-  image,
-  title: [
-    "Realizacja produkcyjna",
-    "Zabudowa meblowa",
-    "Elementy nesting CNC",
-    "Montaż kontraktowy",
-    "Oklejanie i rozkrój",
-    "Projekt i wykonanie",
-  ][index] ?? `Realizacja ${index + 1}`,
-  meta: "BT Wood Studio",
-}));
+const items = [
+  {
+    title: "Zabudowa salonu meblowego",
+    meta: "Produkcja i montaż ekspozycji",
+    image: cncImage,
+  },
+  {
+    title: "Kuchnie kontraktowe",
+    meta: "Montaż mebli kuchennych z podłączeniem AGD",
+    image: cncImage,
+  },
+  {
+    title: "Nesting i oklejanie serii",
+    meta: "Przygotowanie plików CAD i produkcja elementów z oklejeniem krawędzi",
+    image: cncImage,
+  },
+  {
+    title: "Wsparcie projektowe B2B",
+    meta: "Wycena i dokumentacja projektów meblowych",
+    image: cncImage,
+  },
+];
 ---
 
 <B2BLayout
@@ -33,7 +44,7 @@ const items = b2bImages.realizacje.map((image, index) => ({
         items.map((item) => (
           <article class="b2b-card overflow-hidden">
             <div class="aspect-[4/3] overflow-hidden bg-[var(--b2b-bg)]">
-              <img
+              <Image
                 src={item.image}
                 alt={item.title}
                 class="h-full w-full object-cover"

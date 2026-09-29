@@ -1,7 +1,8 @@
 ---
 import B2BLayout from "../../layouts/b2b/Layout.astro";
 import PageHero from "../../components/b2b/PageHero.astro";
-import { b2bImages } from "../../data/b2b-images";
+import { Image } from "astro:assets";
+import cncImage from "../../assets/next_cnc.webp";
 
 const projects = [
   {
@@ -10,7 +11,7 @@ const projects = [
     summary:
       "Przygotowanie plików CAD, optymalizacja rozkroju i produkcja elementów z oklejeniem krawędzi pod montaż u partnera.",
     metrics: ["CAD + nesting", "Seria produkcyjna", "Oklejanie ABS"],
-    image: b2bImages.home[0],
+    image: cncImage,
   },
   {
     name: "Zabudowa salonu meblowego",
@@ -18,7 +19,7 @@ const projects = [
     summary:
       "Projekt i wykonanie ekspozycji: lady, regały i zabudowy pokazowe z pomiarem na obiekcie oraz montażem.",
     metrics: ["Pomiar", "Produkcja", "Montaż"],
-    image: b2bImages.home[1],
+    image: cncImage,
   },
   {
     name: "Kuchnie kontraktowe",
@@ -26,7 +27,7 @@ const projects = [
     summary:
       "Realizacja montażu mebli kuchennych z podłączeniem AGD (hydraulika, elektryka, gaz) oraz protokołem odbioru.",
     metrics: ["Festool", "SEP", "Protokół"],
-    image: b2bImages.montaz[0],
+    image: cncImage,
   },
   {
     name: "Wsparcie projektowe B2B",
@@ -34,7 +35,7 @@ const projects = [
     summary:
       "Wycena i dokumentacja projektów meblowych — od koncepcji po pliki produkcyjne dla nestingu CNC.",
     metrics: ["Wycena", "Dokumentacja", "CNC"],
-    image: b2bImages.home[2],
+    image: cncImage,
   },
 ];
 ---
@@ -55,7 +56,7 @@ const projects = [
         projects.map((project, index) => (
           <article class="b2b-card grid overflow-hidden sm:grid-cols-[0.9fr_1.1fr]">
             <div class="aspect-[16/11] bg-[var(--b2b-bg)] sm:aspect-auto sm:min-h-[220px]">
-              <img
+              <Image
                 src={project.image}
                 alt={project.name}
                 class="h-full w-full object-cover"

@@ -1,7 +1,8 @@
 ---
 import B2BLayout from "../../layouts/b2b/Layout.astro";
 import PageHero from "../../components/b2b/PageHero.astro";
-import { b2bImages } from "../../data/b2b-images";
+import { Image } from "astro:assets";
+import cncImage from "../../assets/next_cnc.webp";
 
 const partnerTypes = [
   {
@@ -39,8 +40,8 @@ const partnerTypes = [
 
   <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
     <div class="mb-8 overflow-hidden border border-[var(--b2b-border)]">
-      <img
-        src={b2bImages.home[5]}
+      <Image
+        src={cncImage}
         alt="Współpraca partnerska BT Wood Studio"
         class="aspect-[21/8] w-full object-cover"
       />
@@ -59,7 +60,9 @@ const partnerTypes = [
       }
     </div>
 
-    <div class="mt-10 border border-[var(--b2b-border)] bg-[var(--b2b-bg)] p-6 sm:p-8">
+    <div
+      class="mt-10 border border-[var(--b2b-border)] bg-[var(--b2b-bg)] p-6 sm:p-8"
+    >
       <h2 class="text-xl font-semibold">Zostań partnerem</h2>
       <p class="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--b2b-muted)]">
         Oryginalna strona partnerska jest w rozbudowie. Tymczasem zapraszamy do
