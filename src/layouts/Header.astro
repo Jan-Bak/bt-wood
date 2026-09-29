@@ -1,5 +1,6 @@
 ---
 import logo from "../assets/logo.png";
+import { Image } from "astro:assets";
 
 const navItems = [
   { label: "Usługi", href: "/i/#services" },
@@ -18,8 +19,8 @@ const navItems = [
     aria-label="BT Wood Studio - strona główna"
     class="flex h-12 items-center gap-2 tracking-tight"
   >
-    <img
-      src={logo.src}
+    <Image
+      src={logo}
       alt="BT Wood Studio logo"
       class="h-8 w-8 object-cover grayscale"
     />

@@ -1,5 +1,6 @@
 ---
 import Reveal from "./Reveal.astro";
+import { Image } from "astro:assets";
 import imageOne from "../assets/bt-11.jpg";
 ---
 
@@ -7,8 +8,8 @@ import imageOne from "../assets/bt-11.jpg";
   class="relative isolate flex min-h-screen w-full items-center overflow-hidden bg-stone-100"
 >
   <div class="absolute inset-0">
-    <img
-      src={imageOne.src}
+    <Image
+      src={imageOne}
       alt="BT Wood Studio interior"
       class="h-full w-full object-cover brightness-[0.72] grayscale-[0.08]"
     />

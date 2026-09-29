@@ -1,6 +1,7 @@
 ---
 import Divider from "../components/Divider.astro";
 import logo from "../assets/logo.png";
+import { Image } from "astro:assets";
 
 const quickLinks = [
   { label: "Usługi", href: "/i/#services" },
@@ -17,8 +18,8 @@ const currentYear = new Date().getFullYear();
     <div class="grid gap-8 md:grid-cols-[1.4fr_0.8fr_1fr_1fr]">
       <div class="space-y-4">
         <div class="flex items-center gap-3">
-          <img
-            src={logo.src}
+          <Image
+            src={logo}
             alt="BT Wood Studio logo"
             class="h-9 w-9 rounded-sm object-cover grayscale"
           />

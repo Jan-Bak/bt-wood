@@ -1,11 +1,15 @@
 ---
+import { Image } from "astro:assets";
 import Divider from "./Divider.astro";
 import Reveal from "./Reveal.astro";
+import kitchenImage from "../assets/i-kuchnia.webp";
+import secondKitchenImage from "../assets/kitchen2.webp";
+import officeImage from "../assets/office.webp";
 
 interface PortfolioItem {
   title: string;
   description: string;
-  image: string;
+  image: ImageMetadata;
   category: string;
   location: string;
   area: string;
@@ -18,8 +22,7 @@ const items: PortfolioItem[] = [
     title: "Nowoczesna kuchnia",
     description:
       "Luksusowa zabudowa z naturalnym drewnem, ciepłym światłem i funkcjonalnym układem przechowywania, który łączy estetykę z codziennym użytkowaniem.",
-    image:
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80",
+    image: kitchenImage,
     category: "Kuchnia",
     location: "Kraków",
     area: "28 m²",
@@ -30,8 +33,7 @@ const items: PortfolioItem[] = [
     title: "Salon z charakterem",
     description:
       "Przestrzeń zaprojektowana z myślą o codziennym relaksie, korzystnym podziale stref i przytulnej, eleganckiej atmosferze inspirowanej naturalnymi materiałami.",
-    image:
-      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=80",
+    image: officeImage,
     category: "Salon",
     location: "Niepołomice",
     area: "42 m²",
@@ -42,8 +44,7 @@ const items: PortfolioItem[] = [
     title: "Zabudowa garderoby",
     description:
       "Minimalistyczne rozwiązanie z zastosowaniem ciepłych materiałów, precyzyjnych detali i praktycznego układu, który podnosi funkcjonalność pomieszczenia.",
-    image:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80",
+    image: secondKitchenImage,
     category: "Garderoba",
     location: "Warszawa",
     area: "14 m²",
@@ -79,7 +80,7 @@ const items: PortfolioItem[] = [
               items.map((item) => (
                 <article class="min-w-full">
                   <div class="relative h-[560px] sm:h-[660px] lg:h-[720px]">
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.title}
                       class="absolute inset-0 h-full w-full object-cover"
