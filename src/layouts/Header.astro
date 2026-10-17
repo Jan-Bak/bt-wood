@@ -151,10 +151,14 @@ const navItems = [
 
 <script>
   const header = document.querySelector("[data-header]");
-  const menuButton = document.querySelector("[data-menu-button]");
+  const menuButton = document.querySelector(
+    "[data-menu-button]",
+  ) as HTMLButtonElement | null;
   const mobilePanel = document.querySelector("[data-mobile-panel]");
   const mobileBackdrop = document.querySelector("[data-mobile-backdrop]");
-  const menuCloseButton = document.querySelector("[data-menu-close]");
+  const menuCloseButton = document.querySelector(
+    "[data-menu-close]",
+  ) as HTMLButtonElement | null;
 
   const updateHeaderState = () => {
     if (!header) return;

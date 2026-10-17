@@ -20,6 +20,13 @@ const team = [
     image: cncImage,
   },
 ];
+
+const mapLinks = {
+  google:
+    "https://www.google.com/maps/search/?api=1&query=BT-Woodstudio%20Pionier%C3%B3w%205A%2C%2032-005%20Niepo%C5%82omice",
+  apple:
+    "https://maps.apple.com/?q=BT-Woodstudio+Pionier%C3%B3w+5A+32-005+Niepo%C5%82omice",
+};
 ---
 
 <B2BLayout
@@ -55,6 +62,24 @@ const team = [
               ul. Pionierów 5A<br />
               32-005 Niepołomice
             </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <a
+                href={mapLinks.google}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="b2b-btn-ghost !px-3 !py-2 !text-[0.62rem]"
+              >
+                Google Maps
+              </a>
+              <a
+                href={mapLinks.apple}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="b2b-btn-ghost !px-3 !py-2 !text-[0.62rem]"
+              >
+                Apple Maps
+              </a>
+            </div>
           </div>
         </article>
 
@@ -163,6 +188,52 @@ const team = [
               placeholder="Zakres prac, terminy, załączniki do przesłania mailowo..."
               class="b2b-input resize-y"></textarea>
           </label>
+
+          <div class="space-y-4 border-t border-[var(--b2b-border)] pt-4">
+            <label
+              class="flex items-start gap-3 text-sm leading-relaxed text-[var(--b2b-muted)]"
+            >
+              <input
+                name="privacy-consent"
+                type="checkbox"
+                class="mt-1 h-4 w-4 shrink-0 accent-[var(--b2b-blue-dark)]"
+              />
+              <span>
+                Wyrażam zgodę na przetwarzanie moich danych osobowych w celu
+                odpowiedzi na zapytanie i kontaktu w sprawie współpracy.
+              </span>
+            </label>
+
+            <label
+              class="flex items-start gap-3 text-sm leading-relaxed text-[var(--b2b-muted)]"
+            >
+              <input
+                name="partner-consent"
+                type="checkbox"
+                class="mt-1 h-4 w-4 shrink-0 accent-[var(--b2b-blue-dark)]"
+              />
+              <span>
+                Wyrażam zgodę na przekazanie moich danych wybranym partnerom lub
+                podwykonawcom, jeśli jest to potrzebne do obsługi zapytania.
+              </span>
+            </label>
+
+            <div
+              class="border border-[var(--b2b-border)] bg-[var(--b2b-bg)] p-4 text-sm leading-relaxed text-[var(--b2b-muted)]"
+            >
+              <p
+                class="text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]"
+              >
+                Administrator danych
+              </p>
+              <p class="mt-2">
+                BT Wood Studio, ul. Pionierów 5A, 32-005 Niepołomice.
+                Administrator przetwarza dane wyłącznie w celu obsługi zapytania
+                i realizacji współpracy.
+              </p>
+            </div>
+          </div>
+
           <button type="button" class="b2b-btn w-full sm:w-auto">
             Wyślij zapytanie
           </button>
