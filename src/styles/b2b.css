@@ -13,7 +13,12 @@
 
   color: var(--b2b-ink);
   background: var(--b2b-surface);
-  font-family: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family:
+    "IBM Plex Sans",
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
   font-weight: 400;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -25,7 +30,12 @@
 [data-b2b] h4,
 [data-b2b] h5,
 [data-b2b] h6 {
-  font-family: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family:
+    "IBM Plex Sans",
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -109,4 +119,12 @@
 [data-b2b] .b2b-input:focus {
   border-color: var(--b2b-blue);
   box-shadow: 0 0 0 3px rgba(64, 188, 244, 0.2);
+}
+
+[data-b2b] a:focus-visible,
+[data-b2b] button:focus-visible,
+[data-b2b] input:focus-visible,
+[data-b2b] textarea:focus-visible {
+  outline: 3px solid var(--b2b-blue-dark);
+  outline-offset: 3px;
 }
