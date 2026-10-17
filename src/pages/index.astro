@@ -16,9 +16,7 @@ import b2bImage from "../assets/agent-agreement.jpg";
     class="relative flex h-screen flex-col bg-stone-100 md:h-screen md:flex-row md:gap-0 md:p-0"
   >
     <h1 class="sr-only">BT Wood Studio — wybierz rodzaj współpracy</h1>
-    <a
-      href="/"
-      aria-label="BT Wood Studio - strona główna"
+    <span
       class="absolute left-1/2 top-5 z-20 -translate-x-1/2 rounded-full p-2 transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-stone-500/60 md:top-8"
     >
       <Image
@@ -26,18 +24,21 @@ import b2bImage from "../assets/agent-agreement.jpg";
         alt="BT Wood Studio logo"
         class="h-14 w-14 object-contain md:h-16 md:w-16"
       />
-    </a>
+    </span>
     <PageSelector
       name="Klient Indywidualny"
       description="Skontaktuj się z nami, aby uzyskać indywidualne rozwiązanie"
       linkTo="/i"
       image={clientImage}
+      loading="eager"
+      fetchPriority="high"
     />
     <PageSelector
       name="Współpraca B2B"
       description="Zaproś nas do współpracy i otrzymasz specjalne warunki"
       linkTo="/b2b"
       image={b2bImage}
+      loading="lazy"
     />
   </main>
 </Layout>

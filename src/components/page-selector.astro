@@ -6,23 +6,35 @@ interface Props {
   description?: string;
   linkTo?: string;
   image?: ImageMetadata;
+  loading?: "eager" | "lazy";
+  fetchPriority?: "high" | "low" | "auto";
 }
 
-const { name, description, linkTo = "/", image } = Astro.props;
+const {
+  name,
+  description,
+  linkTo = "/",
+  image,
+  loading = "lazy",
+  fetchPriority = "auto",
+} = Astro.props;
 ---
 
 <a
   href={linkTo}
-  class="group relative flex h-full w-full cursor-pointer items-center justify-center overflow-hidden bg-stone-200 p-4 text-inherit no-underline shadow-sm ring-1 ring-black/5 transition-all duration-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-stone-500/60 md:h-full md:min-h-0 md:rounded-none md:shadow-none md:ring-0"
+  class="group relative flex h-full w-full cursor-pointer items-center justify-center overflow-hidden bg-stone-800 p-4 text-inherit no-underline shadow-sm ring-1 ring-black/5 transition-all duration-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-stone-500/60 md:h-full md:min-h-0 md:rounded-none md:shadow-none md:ring-0"
 >
   {
     image && (
       <Image
         src={image}
         alt={name}
-        class="absolute inset-0 h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-75"
-        loading="eager"
-        fetchpriority="high"
+        class="absolute inset-0 h-full w-full object-cover opacity-0 transition-[opacity,scale,filter] duration-500 group-hover:scale-110 group-hover:brightness-75 motion-reduce:transition-none"
+        widths={[640, 960, 1280, 1600]}
+        sizes="(min-width: 768px) 50vw, 100vw"
+        loading={loading}
+        fetchpriority={fetchPriority}
+        data-page-selector-image
       />
     )
   }
@@ -54,3 +66,23 @@ const { name, description, linkTo = "/", image } = Astro.props;
     }
   </div>
 </a>
+
+<style is:global>
+  [data-page-selector-image].is-loaded {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  document
+    .querySelectorAll<HTMLImageElement>("[data-page-selector-image]")
+    .forEach((image) => {
+      const reveal = () => image.classList.add("is-loaded");
+
+      if (image.complete) {
+        reveal();
+      } else {
+        image.addEventListener("load", reveal, { once: true });
+      }
+    });
+</script>
