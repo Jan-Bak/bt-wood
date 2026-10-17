@@ -16,7 +16,7 @@ bump-version-patch:
 		echo "Cancelled."; \
 		exit 1; \
 	fi; \
-	@npm version patch && git push origin main --tags
+	npm version patch && git push origin main --tags
 
 ## bump-version-minor: bump minor + push
 bump-version-minor:
@@ -25,7 +25,7 @@ bump-version-minor:
 		echo "Cancelled."; \
 		exit 1; \
 	fi; \
-	@npm version minor && git push origin main --tags
+	npm version minor && git push origin main --tags
 
 ## bump-version-major: bump major + push (z potwierdzeniem)
 bump-version-major:
