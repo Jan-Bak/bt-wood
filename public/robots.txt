@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bt-woodstudio.com/sitemap.xml

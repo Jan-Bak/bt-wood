@@ -21,6 +21,8 @@ const { name, description, linkTo = "/", image } = Astro.props;
         src={image}
         alt={name}
         class="absolute inset-0 h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-75"
+        loading="eager"
+        fetchpriority="high"
       />
     )
   }

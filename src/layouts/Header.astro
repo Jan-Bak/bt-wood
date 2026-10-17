@@ -113,9 +113,20 @@ const navItems = [
 <aside
   id="mobile-navigation-panel"
   data-mobile-panel
+  role="dialog"
+  aria-modal="true"
   class="fixed right-0 top-0 z-50 flex h-full w-full max-w-sm translate-x-full flex-col border-l border-white/10 bg-stone-950/95 p-6 pt-20 shadow-2xl transition-transform duration-300 md:hidden"
   aria-label="Mobile navigation"
+  inert
 >
+  <button
+    type="button"
+    data-menu-close
+    class="absolute right-4 top-4 inline-flex min-h-11 min-w-11 items-center justify-center text-sm uppercase tracking-[0.2em] text-stone-100 transition hover:text-[#e7d8bc]"
+    aria-label="Close mobile navigation menu"
+  >
+    <span aria-hidden="true">×</span><span class="ml-2">Zamknij</span>
+  </button>
   <nav aria-label="Mobile navigation" class="mt-4">
     <ul class="space-y-2">
       {
@@ -143,6 +154,7 @@ const navItems = [
   const menuButton = document.querySelector("[data-menu-button]");
   const mobilePanel = document.querySelector("[data-mobile-panel]");
   const mobileBackdrop = document.querySelector("[data-mobile-backdrop]");
+  const menuCloseButton = document.querySelector("[data-menu-close]");
 
   const updateHeaderState = () => {
     if (!header) return;
@@ -164,7 +176,13 @@ const navItems = [
       mobilePanel.classList.toggle("translate-x-full", !isOpen);
       mobileBackdrop.classList.toggle("opacity-0", !isOpen);
       mobileBackdrop.classList.toggle("pointer-events-none", !isOpen);
+      mobilePanel.toggleAttribute("inert", !isOpen);
       document.body.classList.toggle("overflow-hidden", isOpen);
+      if (isOpen) {
+        menuCloseButton?.focus();
+      } else {
+        menuButton.focus();
+      }
     };
 
     const closeMenu = () => setMenuState(false);
@@ -180,6 +198,7 @@ const navItems = [
     });
 
     mobileBackdrop.addEventListener("click", closeMenu);
+    menuCloseButton?.addEventListener("click", closeMenu);
 
     mobilePanel.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", closeMenu);
@@ -188,6 +207,30 @@ const navItems = [
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         closeMenu();
+      }
+
+      if (
+        event.key !== "Tab" ||
+        menuButton.getAttribute("aria-expanded") !== "true"
+      ) {
+        return;
+      }
+
+      const focusable = Array.from(
+        mobilePanel.querySelectorAll<HTMLElement>(
+          "a[href], button:not([disabled])",
+        ),
+      );
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     });
   }

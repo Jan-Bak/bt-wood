@@ -55,6 +55,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
           return (
             <a
               href={item.href}
+              aria-current={active ? "page" : undefined}
               class:list={[
                 "px-3 py-2 text-[0.78rem] font-medium transition",
                 item.primary
@@ -86,9 +87,21 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
 <div
   id="b2b-mobile-nav"
   data-b2b-panel
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu mobilne B2B"
+  inert
   class="fixed inset-0 z-40 hidden bg-white lg:hidden"
 >
   <div class="flex h-full flex-col px-4 pb-8 pt-20">
+    <button
+      type="button"
+      data-b2b-menu-close
+      class="absolute right-4 top-3 inline-flex min-h-11 min-w-11 items-center justify-center text-[0.78rem] font-semibold text-[var(--b2b-ink)]"
+      aria-label="Zamknij menu mobilne"
+    >
+      <span aria-hidden="true">×</span><span class="ml-2">Zamknij</span>
+    </button>
     <nav aria-label="Menu mobilne B2B" class="space-y-1">
       {
         navItems.map((item) => (
@@ -113,14 +126,25 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
 </div>
 
 <script>
-  const button = document.querySelector("[data-b2b-menu]");
+  const button = document.querySelector(
+    "[data-b2b-menu]",
+  ) as HTMLButtonElement | null;
   const panel = document.querySelector("[data-b2b-panel]");
+  const closeButton = document.querySelector(
+    "[data-b2b-menu-close]",
+  ) as HTMLButtonElement | null;
 
   if (button && panel) {
     const setOpen = (open: boolean) => {
       button.setAttribute("aria-expanded", String(open));
       panel.classList.toggle("hidden", !open);
+      panel.toggleAttribute("inert", !open);
       document.body.classList.toggle("overflow-hidden", open);
+      if (open) {
+        closeButton?.focus();
+      } else {
+        button.focus();
+      }
     };
 
     button.addEventListener("click", () => {
@@ -130,6 +154,34 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
 
     panel.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => setOpen(false));
+    });
+
+    closeButton?.addEventListener("click", () => setOpen(false));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setOpen(false);
+
+      if (
+        event.key !== "Tab" ||
+        button.getAttribute("aria-expanded") !== "true"
+      ) {
+        return;
+      }
+
+      const focusable = Array.from(
+        panel.querySelectorAll<HTMLElement>("a[href], button:not([disabled])"),
+      );
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     });
   }
 </script>
