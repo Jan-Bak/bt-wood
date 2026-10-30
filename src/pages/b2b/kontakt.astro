@@ -7,14 +7,14 @@ import cncImage from "../../assets/next_cnc.webp";
 const team = [
   {
     name: "Tomek",
-    email: "tomasz@bt-woodstudio.com",
+    email: "t.chachlowski@bt-woodstudio.com",
     phone: "+48 791 374 837",
     phoneHref: "+48791374837",
     image: cncImage,
   },
   {
     name: "Bartek",
-    email: "bartlomiej@bt-woodstudio.com",
+    email: "b.ciaston@bt-woodstudio.com",
     phone: "+48 606 634 401",
     phoneHref: "+48606634401",
     image: cncImage,
@@ -31,7 +31,7 @@ const mapLinks = {
 
 <B2BLayout
   title="Kontakt"
-  description="Kontakt B2B BT Wood Studio — Tomek, Bartek, biuro@bt-woodstudio.com, Niepołomice."
+  description="Kontakt B2B BT Wood Studio - Tomek, Bartek, biuro@bt-woodstudio.com, Niepołomice."
 >
   <PageHero
     eyebrow="Kontakt"
@@ -126,11 +126,11 @@ const mapLinks = {
         <p class="b2b-eyebrow">Zapytanie B2B</p>
         <h2 class="mt-2 text-2xl font-semibold">Napisz w sprawie współpracy</h2>
         <p class="mt-3 text-sm leading-relaxed text-[var(--b2b-muted)]">
-          Opisz zakres (nesting, oklejanie, montaż, projekt) — odezwiemy się z
+          Opisz zakres (nesting, oklejanie, montaż, projekt) - odezwiemy się z
           kolejnymi krokami.
         </p>
 
-        <form class="mt-6 grid gap-4">
+        <form class="mt-6 grid gap-4" data-contact-form>
           <label class="block text-sm">
             <span
               class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]"
@@ -141,6 +141,7 @@ const mapLinks = {
               id="b2b-contact-name"
               name="name"
               type="text"
+              required
               autocomplete="name"
               placeholder="Nazwa firmy lub imię"
               class="b2b-input"
@@ -156,6 +157,7 @@ const mapLinks = {
               id="b2b-contact-email"
               name="email"
               type="email"
+              required
               autocomplete="email"
               placeholder="firma@email.com"
               class="b2b-input"
@@ -171,6 +173,7 @@ const mapLinks = {
               id="b2b-contact-subject"
               name="subject"
               type="text"
+              required
               placeholder="np. wycena nestingu / montaż kuchni"
               class="b2b-input"
             />
@@ -185,6 +188,7 @@ const mapLinks = {
               id="b2b-contact-message"
               name="message"
               rows="6"
+              required
               placeholder="Zakres prac, terminy, załączniki do przesłania mailowo..."
               class="b2b-input resize-y"></textarea>
           </label>
@@ -196,6 +200,7 @@ const mapLinks = {
               <input
                 name="privacy-consent"
                 type="checkbox"
+                required
                 class="mt-1 h-4 w-4 shrink-0 accent-[var(--b2b-blue-dark)]"
               />
               <span>
@@ -234,11 +239,26 @@ const mapLinks = {
             </div>
           </div>
 
-          <button type="button" class="b2b-btn w-full sm:w-auto">
-            Wyślij zapytanie
-          </button>
+          <div>
+            <button type="submit" class="b2b-btn w-full sm:w-auto">
+              Wyślij zapytanie
+            </button>
+            <p
+              class="mt-3 text-sm text-[var(--b2b-muted)]"
+              data-form-status
+              role="status"
+              aria-live="polite"
+            >
+            </p>
+          </div>
         </form>
       </article>
     </div>
   </section>
 </B2BLayout>
+
+<script>
+  import { initializeContactForms } from "../../scripts/contact-form";
+
+  initializeContactForms();
+</script>

@@ -6,7 +6,7 @@ const steps = [
   {
     title: "Pierwsze spotkanie",
     description:
-      "Rozmowa o oczekiwaniach, terminie, stylu i budżecie — w studio lub online.",
+      "Rozmowa o oczekiwaniach, terminie, stylu i budżecie - w studio lub online.",
   },
   {
     title: "Rozpoczęcie współpracy",
@@ -21,7 +21,7 @@ const steps = [
   {
     title: "Dobór materiałów",
     description:
-      "Kompletowanie frontów, blatów, uchwytów i detali — z możliwością obejrzenia próbek.",
+      "Kompletowanie frontów, blatów, uchwytów i detali - z możliwością obejrzenia próbek.",
   },
   {
     title: "Produkcja i montaż",
@@ -47,7 +47,9 @@ const steps = [
       </div>
     </Reveal>
 
-    <div class="grid gap-8 pt-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end lg:gap-16">
+    <div
+      class="grid gap-8 pt-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end lg:gap-16"
+    >
       <Reveal delay={120}>
         <p class="text-[0.65rem] uppercase tracking-[0.3em] text-stone-500">
           Współpraca
@@ -61,14 +63,16 @@ const steps = [
 
       <Reveal delay={200}>
         <p class="max-w-xl text-base leading-relaxed text-stone-600">
-          Prowadzimy Cię przez każdy etap — od pierwszej rozmowy po odbiór
+          Prowadzimy Cię przez każdy etap - od pierwszej rozmowy po odbiór
           gotowych mebli. Ty podejmujesz decyzje projektowe, my dbamy o
           terminowość, jakość i spokój procesu.
         </p>
       </Reveal>
     </div>
 
-    <ol class="mt-12 grid gap-px border border-stone-300 bg-stone-300 sm:grid-cols-2 lg:grid-cols-3">
+    <ol
+      class="mt-12 grid gap-px border border-stone-300 bg-stone-300 sm:grid-cols-2 lg:grid-cols-3"
+    >
       {
         steps.map((step, index) => (
           <Reveal
@@ -79,9 +83,7 @@ const steps = [
             <p class="text-[0.62rem] uppercase tracking-[0.28em] text-stone-500">
               Krok {String(index + 1).padStart(2, "0")}
             </p>
-            <h3
-              class="mt-4 font-[family-name:var(--font-display)] text-2xl leading-tight text-stone-900 sm:text-3xl"
-            >
+            <h3 class="mt-4 font-[family-name:var(--font-display)] text-2xl leading-tight text-stone-900 sm:text-3xl">
               {step.title}
             </h3>
             <p class="mt-4 text-sm leading-relaxed text-stone-600">

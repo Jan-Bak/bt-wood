@@ -70,7 +70,9 @@ const packages = [
       </div>
     </Reveal>
 
-    <div class="grid gap-8 pt-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end lg:gap-16">
+    <div
+      class="grid gap-8 pt-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end lg:gap-16"
+    >
       <Reveal delay={120}>
         <p class="text-[0.65rem] uppercase tracking-[0.3em] text-stone-500">
           Pakiety
@@ -113,9 +115,7 @@ const packages = [
                 >
                   {pkg.tagline}
                 </p>
-                <h3
-                  class="mt-3 font-[family-name:var(--font-display)] text-3xl leading-none"
-                >
+                <h3 class="mt-3 font-[family-name:var(--font-display)] text-3xl leading-none">
                   {pkg.name}
                 </h3>
               </div>
@@ -160,7 +160,10 @@ const packages = [
             >
               {pkg.features.map((feature) => (
                 <li class="flex gap-3">
-                  <span aria-hidden="true" class="mt-2 h-px w-3 shrink-0 bg-current opacity-50" />
+                  <span
+                    aria-hidden="true"
+                    class="mt-2 h-px w-3 shrink-0 bg-current opacity-50"
+                  />
                   <span>{feature}</span>
                 </li>
               ))}
@@ -182,11 +185,18 @@ const packages = [
       }
     </div>
 
+    <Reveal delay={400} class="mt-8 border border-[#d7c7ac] bg-stone-50 p-5">
+      <p class="text-sm leading-relaxed text-stone-700">
+        Jesienna promocja dla nowych klientów - rabat zależny od wybranego
+        pakietu. Zapytaj nas o szczegóły.
+      </p>
+    </Reveal>
+
     <Reveal delay={420} class="mt-8">
       <p class="text-sm leading-relaxed text-stone-500">
         Większość klientów wybiera pakiet Comfort z zabudową kuchenną, aby
-        otrzymać spójne, gotowe do życia rozwiązanie bez rozpraszania procesu
-        na wielu wykonawców.
+        otrzymać spójne, gotowe do życia rozwiązanie bez rozpraszania procesu na
+        wielu wykonawców.
       </p>
     </Reveal>
   </div>

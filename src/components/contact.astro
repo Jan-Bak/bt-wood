@@ -5,13 +5,13 @@ import Reveal from "./Reveal.astro";
 const team = [
   {
     name: "Tomek",
-    email: "tomasz@bt-woodstudio.com",
+    email: "t.chachlowski@bt-woodstudio.com",
     phone: "+48 791 374 837",
     accent: "#d7c7ac",
   },
   {
     name: "Bartek",
-    email: "bartlomiej@bt-woodstudio.com",
+    email: "b.ciaston@bt-woodstudio.com",
     phone: "+48 606 634 401",
     accent: "#c5b39a",
   },
@@ -70,11 +70,11 @@ const mapLinks = {
                 </a>
               </li>
               <li>
-                <a href="tel:+48791374837" class="hover:text-stone-900">
-                  +48 791 374 837
+                <a href="tel:+48606634401" class="hover:text-stone-900">
+                  +48 606 634 401
                 </a>
               </li>
-              <li>Niepołomice, Polska</li>
+              <li>ul. Pionierów 5A, 32-005 Niepołomice</li>
             </ul>
           </div>
         </Reveal>
@@ -192,7 +192,7 @@ const mapLinks = {
             </p>
           </div>
 
-          <form class="grid gap-4 md:grid-cols-2">
+          <form class="grid gap-4 md:grid-cols-2" data-contact-form>
             <label class="block text-sm text-stone-700 md:col-span-1">
               <span
                 class="mb-2 block text-[0.62rem] uppercase tracking-[0.2em] text-stone-500"
@@ -203,6 +203,7 @@ const mapLinks = {
                 id="contact-name"
                 name="name"
                 type="text"
+                required
                 autocomplete="name"
                 placeholder="Twoje imię"
                 class="w-full border border-stone-300 bg-stone-50 px-3 py-3 text-sm text-stone-900 outline-none placeholder:text-stone-400"
@@ -219,6 +220,7 @@ const mapLinks = {
                 id="contact-email"
                 name="email"
                 type="email"
+                required
                 autocomplete="email"
                 placeholder="twoj@email.com"
                 class="w-full border border-stone-300 bg-stone-50 px-3 py-3 text-sm text-stone-900 outline-none placeholder:text-stone-400"
@@ -235,6 +237,7 @@ const mapLinks = {
                 id="contact-subject"
                 name="subject"
                 type="text"
+                required
                 placeholder="Opisz temat zapytania"
                 class="w-full border border-stone-300 bg-stone-50 px-3 py-3 text-sm text-stone-900 outline-none placeholder:text-stone-400"
               />
@@ -250,6 +253,7 @@ const mapLinks = {
                 id="contact-message"
                 name="message"
                 rows="5"
+                required
                 placeholder="Napisz, czego potrzebujesz..."
                 class="w-full resize-none border border-stone-300 bg-stone-50 px-3 py-3 text-sm text-stone-900 outline-none placeholder:text-stone-400"
               ></textarea>
@@ -260,6 +264,7 @@ const mapLinks = {
                 <input
                   name="privacy-consent"
                   type="checkbox"
+                  required
                   class="mt-1 h-4 w-4 accent-[#8a6f52]"
                 />
                 <span>
@@ -300,11 +305,17 @@ const mapLinks = {
 
             <div class="md:col-span-2">
               <button
-                type="button"
+                type="submit"
                 class="inline-flex items-center justify-center border border-[#d7c7ac] bg-[#d7c7ac] px-5 py-3 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-stone-900 transition hover:bg-[#e7d8bc]"
               >
                 Wyślij zapytanie
               </button>
+              <p
+                class="mt-3 text-sm text-stone-600"
+                data-form-status
+                role="status"
+                aria-live="polite"
+              ></p>
             </div>
           </form>
         </Reveal>
@@ -312,3 +323,9 @@ const mapLinks = {
     </div>
   </div>
 </section>
+
+<script>
+  import { initializeContactForms } from "../scripts/contact-form";
+
+  initializeContactForms();
+</script>

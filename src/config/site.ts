@@ -4,7 +4,7 @@ export const site = {
   description:
     "Projektujemy i wykonujemy meble na wymiar dla domów, mieszkań i przestrzeni komercyjnych.",
   email: "biuro@bt-woodstudio.com",
-  telephone: "+48 791 374 837",
+  telephone: "+48 606 634 401",
   address: {
     streetAddress: "ul. Pionierów 5A",
     postalCode: "32-005",

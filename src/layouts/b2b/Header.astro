@@ -24,7 +24,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
     <a
       href="/"
       class="flex items-center gap-3"
-      aria-label="BT Wood Studio — wybór ścieżki"
+      aria-label="BT Wood Studio - wybór ścieżki"
     >
       <Image
         src={logo}
@@ -119,9 +119,13 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
         ))
       }
     </nav>
-    <a href="/" class="b2b-btn-ghost mt-auto text-center">
-      Wróć do wyboru ścieżki
-    </a>
+    <button
+      type="button"
+      data-b2b-menu-close
+      class="b2b-btn-ghost mt-auto w-full text-center"
+    >
+      Zamknij
+    </button>
   </div>
 </div>
 
@@ -156,7 +160,11 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
       link.addEventListener("click", () => setOpen(false));
     });
 
-    closeButton?.addEventListener("click", () => setOpen(false));
+    panel
+      .querySelectorAll<HTMLButtonElement>("[data-b2b-menu-close]")
+      .forEach((closeButton) => {
+        closeButton.addEventListener("click", () => setOpen(false));
+      });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") setOpen(false);

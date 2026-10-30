@@ -123,7 +123,7 @@ const navItems = [
     type="button"
     data-menu-close
     class="absolute right-4 top-4 inline-flex min-h-11 min-w-11 items-center justify-center text-sm uppercase tracking-[0.2em] text-stone-100 transition hover:text-[#e7d8bc]"
-    aria-label="Close mobile navigation menu"
+    aria-label="Zamknij menu"
   >
     <span aria-hidden="true">×</span><span class="ml-2">Zamknij</span>
   </button>
@@ -147,6 +147,13 @@ const navItems = [
       }
     </ul>
   </nav>
+  <button
+    type="button"
+    data-menu-close
+    class="mt-auto inline-flex min-h-11 w-full items-center justify-center border border-stone-500 px-4 py-3 text-sm uppercase tracking-[0.2em] text-stone-100 transition hover:border-[#e7d8bc] hover:text-[#e7d8bc]"
+  >
+    Zamknij
+  </button>
 </aside>
 
 <script>
@@ -175,7 +182,7 @@ const navItems = [
       menuButton.setAttribute("aria-expanded", ariaValue);
       menuButton.setAttribute(
         "aria-label",
-        isOpen ? "Close mobile navigation menu" : "Open mobile navigation menu",
+        isOpen ? "Zamknij menu" : "Otwórz menu",
       );
       mobilePanel.classList.toggle("translate-x-full", !isOpen);
       mobileBackdrop.classList.toggle("opacity-0", !isOpen);
@@ -202,7 +209,11 @@ const navItems = [
     });
 
     mobileBackdrop.addEventListener("click", closeMenu);
-    menuCloseButton?.addEventListener("click", closeMenu);
+    mobilePanel
+      .querySelectorAll<HTMLButtonElement>("[data-menu-close]")
+      .forEach((closeButton) => {
+        closeButton.addEventListener("click", closeMenu);
+      });
 
     mobilePanel.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", closeMenu);
