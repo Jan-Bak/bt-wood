@@ -77,9 +77,10 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
       class="text-[0.78rem] font-semibold text-[var(--b2b-ink)] lg:hidden"
       aria-expanded="false"
       aria-controls="b2b-mobile-nav"
+      aria-label="Otwórz menu mobilne"
       data-b2b-menu
     >
-      Menu
+      <span data-b2b-menu-label>Menu</span>
     </button>
   </div>
 </header>
@@ -133,6 +134,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
   const button = document.querySelector(
     "[data-b2b-menu]",
   ) as HTMLButtonElement | null;
+  const buttonLabel = document.querySelector("[data-b2b-menu-label]");
   const panel = document.querySelector("[data-b2b-panel]");
   const closeButton = document.querySelector(
     "[data-b2b-menu-close]",
@@ -141,6 +143,11 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";
   if (button && panel) {
     const setOpen = (open: boolean) => {
       button.setAttribute("aria-expanded", String(open));
+      button.setAttribute(
+        "aria-label",
+        open ? "Zamknij menu mobilne" : "Otwórz menu mobilne",
+      );
+      if (buttonLabel) buttonLabel.textContent = open ? "×" : "Menu";
       panel.classList.toggle("hidden", !open);
       panel.toggleAttribute("inert", !open);
       document.body.classList.toggle("overflow-hidden", open);

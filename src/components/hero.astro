@@ -1,19 +1,36 @@
 ---
 import Reveal from "./Reveal.astro";
 import { Image } from "astro:assets";
-import imageOne from "../assets/bt-11.jpg";
+import bathroom from "../assets/hero/bathroom.webp";
+import bedroom from "../assets/hero/bedroom.webp";
+import livingRoom from "../assets/hero/living.webp";
 ---
 
 <section
   class="relative isolate flex min-h-screen w-full items-center overflow-hidden bg-stone-100"
 >
-  <div class="absolute inset-0">
+  <div class="absolute inset-0" data-hero-slideshow aria-hidden="true">
     <Image
-      src={imageOne}
-      alt="BT Wood Studio interior"
-      class="h-full w-full object-cover brightness-[0.72] grayscale-[0.08]"
+      src={bathroom}
+      alt=""
+      data-hero-slide
+      class="absolute inset-0 h-full w-full object-cover brightness-[0.72] grayscale-[0.08] opacity-100 transition-opacity duration-1000 motion-reduce:transition-none is-active"
       loading="eager"
       fetchpriority="high"
+    />
+    <Image
+      src={bedroom}
+      alt=""
+      data-hero-slide
+      class="absolute inset-0 h-full w-full object-cover brightness-[0.72] grayscale-[0.08] opacity-0 transition-opacity duration-1000 motion-reduce:transition-none"
+      loading="eager"
+    />
+    <Image
+      src={livingRoom}
+      alt=""
+      data-hero-slide
+      class="absolute inset-0 h-full w-full object-cover brightness-[0.72] grayscale-[0.08] opacity-0 transition-opacity duration-1000 motion-reduce:transition-none"
+      loading="eager"
     />
     <!-- background gradients -->
     <div
@@ -80,3 +97,43 @@ import imageOne from "../assets/bt-11.jpg";
     </Reveal>
   </div>
 </section>
+
+<style>
+  @keyframes hero-zoom {
+    from {
+      transform: scale(1);
+    }
+
+    to {
+      transform: scale(1.06);
+    }
+  }
+
+  [data-hero-slide].is-active {
+    animation: hero-zoom 6s ease-out both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-hero-slide].is-active {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const heroSlides = document.querySelectorAll<HTMLElement>("[data-hero-slide]");
+
+  if (heroSlides.length > 1) {
+    let activeSlide = 0;
+
+    window.setInterval(() => {
+      const currentSlide = heroSlides[activeSlide];
+      currentSlide.classList.replace("opacity-100", "opacity-0");
+      currentSlide.classList.remove("is-active");
+      activeSlide = (activeSlide + 1) % heroSlides.length;
+      const nextSlide = heroSlides[activeSlide];
+      nextSlide.classList.replace("opacity-0", "opacity-100");
+      nextSlide.classList.add("is-active");
+    }, 6000);
+  }
+</script>
