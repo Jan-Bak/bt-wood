@@ -129,7 +129,24 @@ const mapLinks = {
           kolejnymi krokami.
         </p>
 
-        <form class="mt-6 grid gap-4" data-contact-form>
+        <form id="b2b-contact-form" class="mt-6 grid gap-4">
+          <input
+            type="hidden"
+            name="access_key"
+            value="4d09a857-0516-4681-bfeb-bd81309a649c"
+          />
+          <input
+            type="hidden"
+            name="from_name"
+            value="BT Wood Studio — Współpraca B2B"
+          />
+          <input
+            type="checkbox"
+            name="botcheck"
+            class="hidden"
+            tabindex="-1"
+            aria-hidden="true"
+          />
           <label class="block text-sm">
             <span
               class="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[var(--b2b-subtle)]"
@@ -214,6 +231,7 @@ const mapLinks = {
               <input
                 name="partner-consent"
                 type="checkbox"
+                required
                 class="mt-1 h-4 w-4 shrink-0 accent-[var(--b2b-blue-dark)]"
               />
               <span>
@@ -257,7 +275,45 @@ const mapLinks = {
 </B2BLayout>
 
 <script>
-  import { initializeContactForms } from "../../scripts/contact-form";
+  const form = document.querySelector<HTMLFormElement>("#b2b-contact-form");
+  if (!form) throw new Error("B2B contact form was not found.");
 
-  initializeContactForms();
+  const result = form.querySelector<HTMLElement>("[data-form-status]");
+  const submitButton = form.querySelector<HTMLButtonElement>(
+    'button[type="submit"]',
+  );
+
+  if (!result || !submitButton) {
+    throw new Error("B2B contact form status or button was not found.");
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const originalButtonText = submitButton.textContent;
+    result.textContent = "Wysyłanie...";
+    submitButton.disabled = true;
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: new FormData(form),
+      });
+      const data: { success: boolean; message: string } = await response.json();
+
+      if (data.success) {
+        result.textContent = "Wiadomość została wysłana. Dziękujemy!";
+        form.reset();
+      } else {
+        result.textContent = data.message;
+      }
+    } catch (error) {
+      console.error("Web3Forms submission failed:", error);
+      result.textContent =
+        "Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz na biuro@bt-woodstudio.com.";
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
+  });
 </script>
