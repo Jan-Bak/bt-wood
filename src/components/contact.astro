@@ -16,20 +16,13 @@ const team = [
     accent: "#c5b39a",
   },
 ];
-
-const mapLinks = {
-  google:
-    "https://www.google.com/maps/search/?api=1&query=BT-Woodstudio%20Pionier%C3%B3w%205A%2C%2032-005%20Niepo%C5%82omice",
-  apple:
-    "https://maps.apple.com/?q=BT-Woodstudio+Pionier%C3%B3w+5A+32-005+Niepo%C5%82omice",
-};
 ---
 
 <section id="contact" class="bg-stone-100 py-12">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <Reveal delay={0} class="flex items-center gap-4">
       <span class="text-[0.68rem] uppercase tracking-[0.38em] text-stone-500">
-        7 Kontakt
+        7 Dla klientów
       </span>
       <div class="flex-1">
         <Divider class="bg-stone-400" />
@@ -45,10 +38,11 @@ const mapLinks = {
             <h2
               class="font-[family-name:var(--font-display)] text-5xl leading-none text-stone-900 sm:text-6xl"
             >
-              Let&#8217;s Talk
+              Dla klientów
             </h2>
             <p class="max-w-sm text-base leading-relaxed text-stone-600">
-              Każdy projekt zaczyna się od rozmowy. Porozmawiajmy o Twoim.
+              Jesteśmy dostępni na WhatsApp i mailowo. Każdy projekt zaczyna się
+              od rozmowy — porozmawiajmy o Twoim.
             </p>
           </div>
 
@@ -132,58 +126,8 @@ const mapLinks = {
         </div>
       </div>
 
-      <div class="grid gap-5 md:grid-cols-2">
-        <Reveal
-          delay={420}
-          class="border border-stone-300/80 bg-stone-900 p-6 text-stone-100 md:col-span-2"
-        >
-          <p class="text-[0.65rem] uppercase tracking-[0.3em] text-stone-300">
-            Dla klientów
-          </p>
-
-          <div
-            class="mt-5 flex flex-col gap-4 text-sm leading-relaxed text-stone-200 md:flex-row md:items-end md:justify-between"
-          >
-            <div class="space-y-3">
-              <p>Jesteśmy dostępni na WhatsApp i mailowo.</p>
-              <p>
-                BT Wood Studio<br />
-                ul. Pionierów 5A<br />
-                32-005 Niepołomice
-              </p>
-              <div class="flex flex-wrap gap-2 pt-1">
-                <a
-                  href={mapLinks.google}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center justify-center border border-stone-500 px-3 py-2 text-[0.62rem] font-medium uppercase tracking-[0.16em] text-stone-100 transition hover:border-[#d7c7ac] hover:text-[#d7c7ac]"
-                >
-                  Google Maps
-                </a>
-                <a
-                  href={mapLinks.apple}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center justify-center border border-stone-500 px-3 py-2 text-[0.62rem] font-medium uppercase tracking-[0.16em] text-stone-100 transition hover:border-[#d7c7ac] hover:text-[#d7c7ac]"
-                >
-                  Apple Maps
-                </a>
-              </div>
-            </div>
-
-            <a
-              href="mailto:biuro@bt-woodstudio.com"
-              class="inline-flex items-center justify-center border border-[#d7c7ac] bg-[#d7c7ac] px-4 py-3 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-stone-900 transition hover:bg-[#e7d8bc]"
-            >
-              Skontaktuj się z nami
-            </a>
-          </div>
-        </Reveal>
-
-        <Reveal
-          delay={500}
-          class="border border-stone-300/80 bg-white p-6 md:col-span-2"
-        >
+      <div class="grid gap-5">
+        <Reveal delay={420} class="border border-stone-300/80 bg-white p-6">
           <div class="mb-5 flex items-center justify-between gap-4">
             <p
               class="text-[0.68rem] uppercase tracking-[0.28em] text-stone-500"
@@ -315,7 +259,8 @@ const mapLinks = {
                 data-form-status
                 role="status"
                 aria-live="polite"
-              ></p>
+              >
+              </p>
             </div>
           </form>
         </Reveal>

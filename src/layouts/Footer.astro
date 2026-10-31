@@ -10,6 +10,13 @@ const quickLinks = [
   { label: "Kontakt", href: "/i/#contact" },
 ];
 
+const mapLinks = {
+  google:
+    "https://www.google.com/maps/search/?api=1&query=BT-Woodstudio%20Pionier%C3%B3w%205A%2C%2032-005%20Niepo%C5%82omice",
+  apple:
+    "https://maps.apple.com/?q=BT-Woodstudio+Pionier%C3%B3w+5A+32-005+Niepo%C5%82omice",
+};
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -79,6 +86,24 @@ const currentYear = new Date().getFullYear();
             </a>
           </li>
           <li class="text-stone-300">ul. Pionierów 5A, 32-005 Niepołomice</li>
+          <li class="flex flex-wrap gap-2 pt-1">
+            <a
+              href={mapLinks.google}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center border border-stone-500 px-3 py-2 text-[0.62rem] font-medium uppercase tracking-[0.16em] text-stone-100 transition hover:border-[#d7c7ac] hover:text-[#d7c7ac]"
+            >
+              Google Maps
+            </a>
+            <a
+              href={mapLinks.apple}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center border border-stone-500 px-3 py-2 text-[0.62rem] font-medium uppercase tracking-[0.16em] text-stone-100 transition hover:border-[#d7c7ac] hover:text-[#d7c7ac]"
+            >
+              Apple Maps
+            </a>
+          </li>
         </ul>
       </div>
 
