@@ -4,12 +4,12 @@ import { Image } from "astro:assets";
 
 const navItems = [
   { label: "Strona główna", href: "/b2b/" },
-  { label: "Realizacje", href: "/b2b/realizacje" },
-  { label: "Projekty", href: "/b2b/projekty" },
-  { label: "Usługi", href: "/b2b/uslugi" },
-  { label: "Montaż", href: "/b2b/montaz" },
-  { label: "Partnerzy", href: "/b2b/partnerzy" },
-  { label: "Kontakt", href: "/b2b/kontakt", primary: true },
+  { label: "Realizacje", href: "/b2b/portfolio" },
+  { label: "Projekty", href: "/b2b/projects" },
+  { label: "Usługi", href: "/b2b/services" },
+  { label: "Montaż", href: "/b2b/assembly" },
+  { label: "Partnerzy", href: "/b2b/partners" },
+  { label: "Kontakt", href: "/b2b/contact", primary: true },
 ];
 
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/b2b";

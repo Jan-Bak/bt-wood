@@ -5,12 +5,12 @@ const pages = [
   "/",
   "/i/",
   "/b2b/",
-  "/b2b/uslugi/",
-  "/b2b/montaz/",
-  "/b2b/projekty/",
-  "/b2b/realizacje/",
-  "/b2b/partnerzy/",
-  "/b2b/kontakt/",
+  "/b2b/services/",
+  "/b2b/assembly/",
+  "/b2b/projects/",
+  "/b2b/portfolio/",
+  "/b2b/partners/",
+  "/b2b/contact/",
 ];
 
 export const GET: APIRoute = () => {
