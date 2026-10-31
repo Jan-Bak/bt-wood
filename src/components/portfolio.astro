@@ -1,55 +1,82 @@
 ---
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import Divider from "./Divider.astro";
 import Reveal from "./Reveal.astro";
-import kitchenImage from "../assets/i-kuchnia.webp";
-import secondKitchenImage from "../assets/kitchen2.webp";
-import officeImage from "../assets/office.webp";
+import forestBathroom from "../assets/realizations/forest/bathroom.webp";
+import forestStairs from "../assets/realizations/forest/stairs.webp";
+import forestBathroomSink from "../assets/realizations/forest/bathroom-sink.webp";
+import forestLivingRoom from "../assets/realizations/forest/living room.webp";
+import hillKitchen from "../assets/realizations/hill/kitchen.webp";
+import hillBathroom from "../assets/realizations/hill/bathroom.webp";
+import hillWardrobe from "../assets/realizations/hill/wardrobe.webp";
+import hillLivingRoom from "../assets/realizations/hill/livingroom.webp";
+import hillHallway from "../assets/realizations/hill/hallway.webp";
+import hillSecondBathroom from "../assets/realizations/hill/bathroom-2.webp";
+import hillToilet from "../assets/realizations/hill/toilet.webp";
+import lakehouseBathroom from "../assets/realizations/lakehouse/bathroom.webp";
+import lakehouseBedroom from "../assets/realizations/lakehouse/bedroom.webp";
+import lakehouseLivingRoom from "../assets/realizations/lakehouse/livingroom.webp";
+import suburbsKitchen from "../assets/realizations/suburbs/kitchen.webp";
+import suburbsBedroom from "../assets/realizations/suburbs/bedroom.webp";
+import suburbsLivingRoom from "../assets/realizations/suburbs/livingroom.webp";
+
+interface PortfolioPhoto {
+  title: string;
+  image: ImageMetadata;
+}
 
 interface PortfolioItem {
   title: string;
   description: string;
-  image: ImageMetadata;
-  category: string;
-  location: string;
-  area: string;
-  year: string;
-  type: string;
+  photos: PortfolioPhoto[];
 }
 
 const items: PortfolioItem[] = [
   {
-    title: "Nowoczesna kuchnia",
+    title: "Dom wśród drzew",
     description:
-      "Luksusowa zabudowa z naturalnym drewnem, ciepłym światłem i funkcjonalnym układem przechowywania, który łączy estetykę z codziennym użytkowaniem.",
-    image: kitchenImage,
-    category: "Kuchnia",
-    location: "Kraków",
-    area: "28 m²",
-    year: "2024",
-    type: "Projekt wnętrza",
+      "Spokojne wnętrza inspirowane naturą: łazienka z dopracowaną strefą umywalkową, drewniane schody i przytulny salon tworzą spójną, domową całość.",
+    photos: [
+      { title: "Łazienka", image: forestBathroom },
+      { title: "Drewniane schody", image: forestStairs },
+      { title: "Umywalka łazienkowa", image: forestBathroomSink },
+      { title: "Salon", image: forestLivingRoom },
+    ],
   },
   {
-    title: "Salon z charakterem",
+    title: "Wnętrza na wzgórzu",
     description:
-      "Przestrzeń zaprojektowana z myślą o codziennym relaksie, korzystnym podziale stref i przytulnej, eleganckiej atmosferze inspirowanej naturalnymi materiałami.",
-    image: officeImage,
-    category: "Salon",
-    location: "Niepołomice",
-    area: "42 m²",
-    year: "2023",
-    type: "Aranżacja",
+      "Kompleksowa aranżacja domu z kuchnią, salonem i funkcjonalną zabudową. Stonowane materiały łączą przestrzeń dzienną z łazienkami, garderobą i korytarzem.",
+    photos: [
+      { title: "Kuchnia", image: hillKitchen },
+      { title: "Łazienka", image: hillBathroom },
+      { title: "Garderoba", image: hillWardrobe },
+      { title: "Salon", image: hillLivingRoom },
+      { title: "Korytarz", image: hillHallway },
+      { title: "Druga łazienka", image: hillSecondBathroom },
+      { title: "Toaleta", image: hillToilet },
+    ],
   },
   {
-    title: "Zabudowa garderoby",
+    title: "Dom nad jeziorem",
     description:
-      "Minimalistyczne rozwiązanie z zastosowaniem ciepłych materiałów, precyzyjnych detali i praktycznego układu, który podnosi funkcjonalność pomieszczenia.",
-    image: secondKitchenImage,
-    category: "Garderoba",
-    location: "Warszawa",
-    area: "14 m²",
-    year: "2025",
-    type: "Meblarstwo",
+      "Jasne, wyciszające wnętrza domu: łazienka, sypialnia i salon utrzymane w spójnej, naturalnej stylistyce sprzyjającej odpoczynkowi.",
+    photos: [
+      { title: "Łazienka", image: lakehouseBathroom },
+      { title: "Sypialnia", image: lakehouseBedroom },
+      { title: "Salon", image: lakehouseLivingRoom },
+    ],
+  },
+  {
+    title: "Dom na przedmieściach",
+    description:
+      "Przytulna aranżacja rodzinnego domu z kuchnią, sypialnią i salonem. Każde pomieszczenie łączy wygodę codziennego użytkowania z ciepłym, spójnym charakterem.",
+    photos: [
+      { title: "Kuchnia", image: suburbsKitchen },
+      { title: "Sypialnia", image: suburbsBedroom },
+      { title: "Salon", image: suburbsLivingRoom },
+    ],
   },
 ];
 ---
@@ -59,7 +86,7 @@ const items: PortfolioItem[] = [
     <div class="mb-8 px-4 sm:px-6 lg:px-8">
       <Reveal delay={0} class="flex items-center gap-4">
         <span class="text-[0.68rem] uppercase tracking-[0.38em] text-stone-500">
-          3 Realizacje
+          {items.length} realizacje
         </span>
         <div class="flex-1">
           <Divider class="bg-stone-400" />
@@ -77,74 +104,104 @@ const items: PortfolioItem[] = [
             class="flex transition-transform duration-500 ease-out"
           >
             {
-              items.map((item) => (
-                <article class="min-w-full">
-                  <div class="relative h-[560px] sm:h-[660px] lg:h-[720px]">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      class="absolute inset-0 h-full w-full object-cover"
-                    />
-                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-900/25 to-stone-900/10" />
+              items.map((item, projectIndex) => (
+                <article
+                  class="min-w-full"
+                  aria-label={`Realizacja ${projectIndex + 1} z ${items.length}: ${item.title}`}
+                >
+                  <div class="relative h-[500px] overflow-hidden bg-stone-200 sm:h-[620px] lg:h-[720px]">
+                    <div
+                      data-photo-track
+                      class="flex h-full transition-transform duration-500 ease-out"
+                    >
+                      {item.photos.map((photo) => (
+                        <div class="relative h-full min-w-full">
+                          <Image
+                            src={photo.image}
+                            alt={`${item.title} — ${photo.title}`}
+                            class="absolute inset-0 h-full w-full object-cover"
+                            loading={projectIndex === 0 ? "eager" : "lazy"}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-900/20 to-stone-900/10" />
 
-                    <div class="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10">
-                      <div class="mb-4 flex items-center gap-3 text-[0.64rem] uppercase tracking-[0.22em] text-stone-200/90">
-                        <span>{item.category}</span>
-                        <span class="h-px w-8 bg-stone-200/70" />
-                        <span>{item.location}</span>
+                    <div class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 p-5 sm:p-8 lg:p-10">
+                      <div>
+                        <div class="mb-3 flex items-center gap-3 text-[0.64rem] uppercase tracking-[0.22em] text-stone-200/90">
+                          <span>
+                            Realizacja{" "}
+                            {String(projectIndex + 1).padStart(2, "0")}
+                          </span>
+                          <span class="h-px w-8 bg-stone-200/70" />
+                          <span data-photo-title>{item.photos[0].title}</span>
+                        </div>
+                        <h3 class="max-w-xl text-3xl font-medium leading-tight text-stone-50 sm:text-4xl lg:text-5xl">
+                          {item.title}
+                        </h3>
                       </div>
 
-                      <h3 class="max-w-xl text-3xl font-medium leading-tight text-stone-50 sm:text-4xl lg:text-5xl">
-                        {item.title}
-                      </h3>
+                      <div class="hidden shrink-0 items-center gap-3 sm:flex">
+                        <span
+                          data-photo-counter
+                          class="min-w-12 text-right text-xs tabular-nums text-stone-100"
+                        >
+                          01 / {String(item.photos.length).padStart(2, "0")}
+                        </span>
+                        <button
+                          type="button"
+                          data-photo-prev
+                          aria-label={`Poprzednie zdjęcie: ${item.title}`}
+                          class="inline-flex h-11 w-11 items-center justify-center border border-white/60 bg-stone-950/20 text-lg text-white backdrop-blur-sm transition hover:bg-stone-950/60"
+                        >
+                          ←
+                        </button>
+                        <button
+                          type="button"
+                          data-photo-next
+                          aria-label={`Następne zdjęcie: ${item.title}`}
+                          class="inline-flex h-11 w-11 items-center justify-center border border-white/60 bg-stone-950/20 text-lg text-white backdrop-blur-sm transition hover:bg-stone-950/60"
+                        >
+                          →
+                        </button>
+                      </div>
                     </div>
                   </div>
 
                   <div class="border-t border-stone-200 bg-[#efe5d5] px-4 py-5 sm:px-6 sm:py-6 lg:px-8 lg:py-7">
-                    <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+                    <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-start">
                       <div>
                         <p class="text-[0.62rem] uppercase tracking-[0.28em] text-stone-500">
-                          Opis realizacji
+                          O realizacji
                         </p>
-                        <p class="mt-3 max-w-xl text-sm leading-relaxed text-stone-700 sm:text-base">
+                        <p class="mt-3 max-w-2xl text-sm leading-relaxed text-stone-700 sm:text-base">
                           {item.description}
                         </p>
                       </div>
 
-                      <dl class="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-2">
-                        <div class="border border-stone-300/80 bg-stone-50 p-3">
-                          <dt class="text-[0.58rem] uppercase tracking-[0.22em] text-stone-500">
-                            Miejsce
-                          </dt>
-                          <dd class="mt-2 text-sm font-medium text-stone-900">
-                            {item.location}
-                          </dd>
+                      <div>
+                        <p class="mb-3 text-[0.62rem] uppercase tracking-[0.28em] text-stone-500">
+                          Zdjęcia realizacji
+                        </p>
+                        <div
+                          class="flex flex-wrap gap-2"
+                          role="group"
+                          aria-label={`Zdjęcia: ${item.title}`}
+                        >
+                          {item.photos.map((photo, photoIndex) => (
+                            <button
+                              type="button"
+                              data-photo-select={photoIndex}
+                              aria-label={`Pokaż zdjęcie: ${photo.title}`}
+                              aria-pressed={photoIndex === 0 ? "true" : "false"}
+                              class="border border-stone-400 px-3 py-2 text-xs text-stone-700 transition hover:border-stone-900 hover:text-stone-950"
+                            >
+                              {photo.title}
+                            </button>
+                          ))}
                         </div>
-                        <div class="border border-stone-300/80 bg-stone-50 p-3">
-                          <dt class="text-[0.58rem] uppercase tracking-[0.22em] text-stone-500">
-                            Metraż
-                          </dt>
-                          <dd class="mt-2 text-sm font-medium text-stone-900">
-                            {item.area}
-                          </dd>
-                        </div>
-                        <div class="border border-stone-300/80 bg-stone-50 p-3">
-                          <dt class="text-[0.58rem] uppercase tracking-[0.22em] text-stone-500">
-                            Rok
-                          </dt>
-                          <dd class="mt-2 text-sm font-medium text-stone-900">
-                            {item.year}
-                          </dd>
-                        </div>
-                        <div class="border border-stone-300/80 bg-stone-50 p-3">
-                          <dt class="text-[0.58rem] uppercase tracking-[0.22em] text-stone-500">
-                            Typ
-                          </dt>
-                          <dd class="mt-2 text-sm font-medium text-stone-900">
-                            {item.type}
-                          </dd>
-                        </div>
-                      </dl>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -154,38 +211,52 @@ const items: PortfolioItem[] = [
         </div>
 
         <div
-          class="flex items-center justify-between gap-4 border-t border-stone-200 bg-stone-50 px-4 py-4 sm:px-6 sm:py-5 lg:px-8"
+          class="border-t border-stone-200 bg-stone-50 px-4 py-4 sm:px-6 sm:py-5 lg:px-8"
         >
-          <div data-portfolio-dots class="flex items-center gap-2.5">
-            {
-              items.map((_, index) => (
-                <button
-                  type="button"
-                  data-dot={index}
-                  aria-label={`Pokaż realizację ${index + 1}`}
-                  class="h-2.5 w-2.5 border border-stone-500 bg-transparent transition-all duration-300 sm:h-3 sm:w-3"
-                />
-              ))
-            }
-          </div>
+          <div
+            class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div
+              class="flex items-center gap-2 overflow-x-auto pb-1"
+              role="group"
+              aria-label="Wybierz realizację"
+            >
+              {
+                items.map((item, index) => (
+                  <button
+                    type="button"
+                    data-project-select={index}
+                    aria-label={`Pokaż realizację ${index + 1}: ${item.title}`}
+                    aria-pressed={index === 0 ? "true" : "false"}
+                    class="shrink-0 border border-stone-300 px-3 py-2 text-xs text-stone-600 transition hover:border-stone-900 hover:text-stone-950 sm:px-4"
+                  >
+                    <span class="mr-2 tabular-nums text-stone-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    {item.title}
+                  </button>
+                ))
+              }
+            </div>
 
-          <div class="flex items-center gap-2 sm:gap-3">
-            <button
-              type="button"
-              data-portfolio-prev
-              aria-label="Poprzednia realizacja"
-              class="inline-flex h-11 w-11 items-center justify-center border border-stone-300 bg-white text-lg text-stone-900 shadow-sm transition hover:border-stone-900 hover:bg-stone-100 sm:h-12 sm:w-12"
-            >
-              ←
-            </button>
-            <button
-              type="button"
-              data-portfolio-next
-              aria-label="Następna realizacja"
-              class="inline-flex h-11 w-11 items-center justify-center border border-stone-900 bg-stone-900 text-lg text-stone-50 shadow-sm transition hover:bg-stone-700 sm:h-12 sm:w-12"
-            >
-              →
-            </button>
+            <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+              <button
+                type="button"
+                data-portfolio-prev
+                aria-label="Poprzednia realizacja"
+                class="inline-flex h-11 w-11 items-center justify-center border border-stone-300 bg-white text-lg text-stone-900 shadow-sm transition hover:border-stone-900 hover:bg-stone-100 sm:h-12 sm:w-12"
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                data-portfolio-next
+                aria-label="Następna realizacja"
+                class="inline-flex h-11 w-11 items-center justify-center border border-stone-900 bg-stone-900 text-lg text-stone-50 shadow-sm transition hover:bg-stone-700 sm:h-12 sm:w-12"
+              >
+                →
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -194,46 +265,200 @@ const items: PortfolioItem[] = [
 </section>
 
 <script>
-  const track = document.querySelector(
+  const portfolioTrack = document.querySelector<HTMLElement>(
     "[data-portfolio-track]",
-  ) as HTMLDivElement | null;
-  const dots = document.querySelectorAll(
-    "[data-dot]",
-  ) as NodeListOf<HTMLButtonElement>;
-  const nextBtn = document.querySelector(
+  );
+  const projectButtons = Array.from(
+    document.querySelectorAll<HTMLButtonElement>("[data-project-select]"),
+  );
+  const nextProjectButton = document.querySelector<HTMLButtonElement>(
     "[data-portfolio-next]",
-  ) as HTMLButtonElement | null;
-  const prevBtn = document.querySelector(
+  );
+  const previousProjectButton = document.querySelector<HTMLButtonElement>(
     "[data-portfolio-prev]",
-  ) as HTMLButtonElement | null;
+  );
+  const portfolioSection = document.querySelector<HTMLElement>("#portfolio");
 
-  if (track && dots.length && nextBtn && prevBtn) {
-    const slides = Array.from(track.children) as HTMLElement[];
-    let currentIndex = 0;
+  if (
+    portfolioTrack &&
+    projectButtons.length &&
+    nextProjectButton &&
+    previousProjectButton &&
+    portfolioSection
+  ) {
+    const projects = Array.from(portfolioTrack.children) as HTMLElement[];
+    const photoIndexes = projects.map(() => 0);
+    const photoUpdaters: Array<(index: number) => void> = [];
+    let currentProject = 0;
 
-    const updateCarousel = (index: number) => {
-      currentIndex = (index + slides.length) % slides.length;
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    const updateProject = (index: number) => {
+      currentProject = (index + projects.length) % projects.length;
+      portfolioTrack.style.transform = `translateX(-${currentProject * 100}%)`;
 
-      dots.forEach((dot, dotIndex) => {
-        const isActive = dotIndex === currentIndex;
-        dot.classList.toggle("bg-stone-900", isActive);
-        dot.classList.toggle("w-8", isActive);
-        dot.classList.toggle("border-stone-900", isActive);
-        dot.classList.toggle("bg-transparent", !isActive);
+      projects.forEach((project, projectIndex) => {
+        const isActive = projectIndex === currentProject;
+        project.inert = !isActive;
+        project.setAttribute("aria-hidden", String(!isActive));
+      });
+
+      projectButtons.forEach((button, buttonIndex) => {
+        const isActive = buttonIndex === currentProject;
+        button.setAttribute("aria-pressed", String(isActive));
+        button.classList.toggle("border-stone-900", isActive);
+        button.classList.toggle("bg-stone-900", isActive);
+        button.classList.toggle("text-stone-50", isActive);
+        button.classList.toggle("border-stone-300", !isActive);
+        button.classList.toggle("text-stone-600", !isActive);
       });
     };
 
-    dots.forEach((dot) => {
-      dot.addEventListener("click", () => {
-        const dotIndex = Number(dot.dataset.dot);
-        if (!Number.isNaN(dotIndex)) updateCarousel(dotIndex);
+    projects.forEach((project, projectIndex) => {
+      const photoTrack =
+        project.querySelector<HTMLElement>("[data-photo-track]");
+      const photoSelectButtons = Array.from(
+        project.querySelectorAll<HTMLButtonElement>("[data-photo-select]"),
+      );
+      const photoTitle =
+        project.querySelector<HTMLElement>("[data-photo-title]");
+      const photoCounter = project.querySelector<HTMLElement>(
+        "[data-photo-counter]",
+      );
+      const previousPhotoButton =
+        project.querySelector<HTMLButtonElement>("[data-photo-prev]");
+      const nextPhotoButton =
+        project.querySelector<HTMLButtonElement>("[data-photo-next]");
+
+      if (
+        !photoTrack ||
+        !photoSelectButtons.length ||
+        !photoTitle ||
+        !photoCounter ||
+        !previousPhotoButton ||
+        !nextPhotoButton
+      ) {
+        photoUpdaters.push(() => {});
+        return;
+      }
+
+      let currentPhoto = 0;
+
+      const updatePhoto = (index: number) => {
+        currentPhoto =
+          (index + photoSelectButtons.length) % photoSelectButtons.length;
+        photoIndexes[projectIndex] = currentPhoto;
+        const selectedButton = photoSelectButtons[currentPhoto];
+        photoTrack.style.transform = `translateX(-${currentPhoto * 100}%)`;
+        photoTitle.textContent = selectedButton.textContent?.trim() ?? "";
+        photoCounter.textContent = `${String(currentPhoto + 1).padStart(2, "0")} / ${String(photoSelectButtons.length).padStart(2, "0")}`;
+
+        photoSelectButtons.forEach((button, buttonIndex) => {
+          const isActive = buttonIndex === currentPhoto;
+          button.setAttribute("aria-pressed", String(isActive));
+          button.classList.toggle("border-stone-900", isActive);
+          button.classList.toggle("bg-stone-300", isActive);
+          button.classList.toggle("text-stone-50", isActive);
+        });
+      };
+
+      photoUpdaters.push(updatePhoto);
+
+      photoSelectButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const index = Number(button.dataset.photoSelect);
+          if (!Number.isNaN(index)) updatePhoto(index);
+        });
+      });
+
+      previousPhotoButton.addEventListener("click", () =>
+        updatePhoto(currentPhoto - 1),
+      );
+      nextPhotoButton.addEventListener("click", () =>
+        updatePhoto(currentPhoto + 1),
+      );
+    });
+
+    projectButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const index = Number(button.dataset.projectSelect);
+        if (!Number.isNaN(index)) updateProject(index);
       });
     });
 
-    nextBtn.addEventListener("click", () => updateCarousel(currentIndex + 1));
-    prevBtn.addEventListener("click", () => updateCarousel(currentIndex - 1));
+    nextProjectButton.addEventListener("click", () =>
+      updateProject(currentProject + 1),
+    );
+    previousProjectButton.addEventListener("click", () =>
+      updateProject(currentProject - 1),
+    );
 
-    updateCarousel(0);
+    updateProject(0);
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let isInView = false;
+    let hasInteracted = false;
+    let autoplayTimer: number | undefined;
+
+    const stopAutoplay = () => {
+      if (autoplayTimer !== undefined) {
+        window.clearInterval(autoplayTimer);
+        autoplayTimer = undefined;
+      }
+    };
+
+    const syncAutoplay = () => {
+      if (
+        !isInView ||
+        hasInteracted ||
+        reducedMotion.matches ||
+        document.visibilityState !== "visible"
+      ) {
+        stopAutoplay();
+        return;
+      }
+
+      if (autoplayTimer !== undefined) return;
+
+      autoplayTimer = window.setInterval(() => {
+        const photoCount = projects[currentProject].querySelectorAll(
+          "[data-photo-select]",
+        ).length;
+        const nextPhotoIndex = photoIndexes[currentProject] + 1;
+
+        if (nextPhotoIndex < photoCount) {
+          photoUpdaters[currentProject](nextPhotoIndex);
+          return;
+        }
+
+        updateProject(currentProject + 1);
+        photoUpdaters[currentProject](0);
+      }, 5000);
+    };
+
+    const disableAutoplay = () => {
+      hasInteracted = true;
+      stopAutoplay();
+    };
+
+    portfolioSection.addEventListener("pointerdown", disableAutoplay, {
+      once: true,
+    });
+    portfolioSection.addEventListener("keydown", disableAutoplay, {
+      once: true,
+    });
+    portfolioSection.addEventListener("focusin", disableAutoplay, {
+      once: true,
+    });
+    document.addEventListener("visibilitychange", syncAutoplay);
+    reducedMotion.addEventListener("change", syncAutoplay);
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isInView = entry.isIntersecting && entry.intersectionRatio >= 0.25;
+        if (!isInView) stopAutoplay();
+        else syncAutoplay();
+      },
+      { threshold: 0.25 },
+    );
+    visibilityObserver.observe(portfolioSection);
   }
 </script>
