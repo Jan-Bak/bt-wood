@@ -12,7 +12,7 @@ import livingRoom from "../assets/hero/living.webp";
   <div class="absolute inset-0" data-hero-slideshow aria-hidden="true">
     <Image
       src={bathroom}
-      alt=""
+      alt="A modern bathroom with a bathtub, sink, and mirror. Created with a neutral color palette, featuring shades of gray and white. The bathroom is well-lit with natural light coming from a window, and there are plants placed on the windowsill for a touch of greenery."
       data-hero-slide
       class="absolute inset-0 h-full w-full object-cover brightness-[0.72] grayscale-[0.08] opacity-100 transition-opacity duration-1000 motion-reduce:transition-none is-active"
       loading="eager"
@@ -20,14 +20,14 @@ import livingRoom from "../assets/hero/living.webp";
     />
     <Image
       src={bedroom}
-      alt=""
+      alt="A modern bedroom with a king-size bed, nightstands, and a view of the outdoors. The room is decorated with a warm color palette, featuring shades of beige and brown. There are soft lighting fixtures and a comfortable seating area."
       data-hero-slide
       class="absolute inset-0 h-full w-full object-cover brightness-[0.72] grayscale-[0.08] opacity-0 transition-opacity duration-1000 motion-reduce:transition-none"
       loading="eager"
     />
     <Image
       src={livingRoom}
-      alt=""
+      alt="A modern living room with a sofa, coffee table, and a view of the outdoors. The room is decorated with a warm color palette, featuring shades of beige and brown. There are soft lighting fixtures and a comfortable seating area."
       data-hero-slide
       class="absolute inset-0 h-full w-full object-cover brightness-[0.72] grayscale-[0.08] opacity-0 transition-opacity duration-1000 motion-reduce:transition-none"
       loading="eager"
@@ -121,7 +121,8 @@ import livingRoom from "../assets/hero/living.webp";
 </style>
 
 <script>
-  const heroSlides = document.querySelectorAll<HTMLElement>("[data-hero-slide]");
+  const heroSlides =
+    document.querySelectorAll<HTMLElement>("[data-hero-slide]");
 
   if (heroSlides.length > 1) {
     let activeSlide = 0;
