@@ -7,6 +7,14 @@ const links = [
   { label: "Projekty", href: "/b2b/projects" },
   { label: "Kontakt", href: "/b2b/contact" },
 ];
+
+const mapLinks = {
+  google:
+    "https://www.google.com/maps/search/?api=1&query=BT-Woodstudio%20Pionier%C3%B3w%205A%2C%2032-005%20Niepo%C5%82omice",
+  apple:
+    "https://maps.apple.com/?q=BT-Woodstudio+Pionier%C3%B3w+5A+32-005+Niepo%C5%82omice",
+};
+
 ---
 
 <footer
@@ -61,6 +69,24 @@ const links = [
             </a>
           </li>
           <li>ul. Pionierów 5A, 32-005 Niepołomice</li>
+          <li class="flex flex-wrap gap-2 pt-1">
+            <a
+              href={mapLinks.google}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center border border-white/30 px-3 py-2 text-[0.62rem] font-medium uppercase tracking-[0.16em] text-white transition hover:border-[var(--b2b-blue)] hover:text-[var(--b2b-blue)]"
+            >
+              Google Maps
+            </a>
+            <a
+              href={mapLinks.apple}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center border border-white/30 px-3 py-2 text-[0.62rem] font-medium uppercase tracking-[0.16em] text-white transition hover:border-[var(--b2b-blue)] hover:text-[var(--b2b-blue)]"
+            >
+              Apple Maps
+            </a>
+          </li>
         </ul>
       </div>
     </div>
